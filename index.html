@@ -1,0 +1,1516 @@
+Fares, [07/01/2026 4:55 pm]
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>DEX treading | متجر إلكتروني</title>
+  <meta name="description" content="DEX treading - متجر خدمات ومنتجات رقمية للتداول: كورسات، شحن USDT، حسابات Exness، بوتات تداول آلي."/>
+  <style>
+    :root{
+      --bg:#070A12;
+      --bg2:#05060B;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.04);
+      --border:rgba(255,255,255,.12);
+      --text:#ffffff;
+      --muted:#b8c2e6;
+      --brand:#1e5bff;
+      --brand2:#4f7cff;
+      --ok:#27d17c;
+      --warn:#ffb020;
+      --danger:#ff5b5b;
+      --shadow: 0 12px 28px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:22px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:radial-gradient(1200px 500px at 20% -10%, rgba(30,91,255,.25), transparent 60%), radial-gradient(1200px 500px at 80% -10%, rgba(79,124,255,.18), transparent 60%), var(--bg); color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    button{font-family:inherit}
+    img{max-width:100%;display:block}
+
+    .container{max-width:1160px;margin:0 auto;padding:18px}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      background:rgba(5,6,11,.72);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .topbar .container{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:180px}
+    .logo{
+      width:44px;height:44px;border-radius:14px;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      box-shadow: 0 10px 18px rgba(30,91,255,.25);
+      display:grid;place-items:center;
+      font-weight:900;letter-spacing:.5px;
+    }
+    .brand .name{display:flex;flex-direction:column;gap:2px}
+    .brand .name bI{font-size:14px;font-weight:900}
+    .brand .tagline{font-size:12px;color:var(--muted);line-height:1.2}
+
+    .nav{
+      display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end
+    }
+
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 10px;border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      font-size:12px;color:var(--muted);
+      white-space:nowrap;
+    }
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:10px 14px;border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      cursor:pointer;
+      user-select:none;
+      transition:transform .08s ease, opacity .2s ease, background .2s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{opacity:.95}
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{border:none;background:linear-gradient(135deg,var(--brand),#2d5bff)}
+    .btn.ghost{background:transparent}
+    .btn.ok{border:none;background:linear-gradient(135deg,#2ad67a,#0aa36b)}
+    .btn.danger{border:1px solid rgba(255,91,91,.35);background:rgba(255,91,91,.12);color:#ffd6d6}
+
+    .cartBtn{
+      position:relative;
+    }
+    .bubble{
+      position:absolute;top:-7px;right:-7px;
+      width:18px;height:18px;border-radius:999px;
+      background:var(--danger);
+      display:grid;place-items:center;
+      font-size:11px;font-weight:900;
+      border:2px solid rgba(5,6,11,.9);
+    }
+
+    /* Hero */
+    .hero{padding:24px 0 8px}
+    .heroGrid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;align-items:stretch}
+    @media (max-width:920px){.heroGrid{grid-template-columns:1fr}}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      border:1px solid var(--border);
+
+Fares, [07/01/2026 4:55 pm]
+border-radius:var(--radius2);
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+    .card.soft{box-shadow:none;background:rgba(255,255,255,.04)}
+    .muted{color:var(--muted)}
+    .small{font-size:12px}
+    .h1{font-size:30px;line-height:1.1;margin:0 0 10px}
+    @media (max-width:520px){.h1{font-size:26px}}
+    .lead{margin:0 0 16px;color:var(--muted);line-height:1.6}
+
+    .ctaRow{display:flex;gap:10px;flex-wrap:wrap}
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+    @media (max-width:700px){.kpis{grid-template-columns:1fr}}
+    .kpi{
+      padding:12px;border-radius:18px;border:1px solid var(--border);background:rgba(0,0,0,.12)
+    }
+    .kpi strong{display:block;font-size:14px}
+    .kpi span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+
+    /* Section */
+    .sectionHead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:18px 0 10px;flex-wrap:wrap}
+    .sectionHead h2{margin:0;font-size:18px}
+    .sectionHead .muted{font-size:12px}
+
+    /* Products */
+    .gridProducts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    @media (max-width:1100px){.gridProducts{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:820px){.gridProducts{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:520px){.gridProducts{grid-template-columns:1fr}}
+
+    .product{
+      border:1px solid var(--border);
+      border-radius:var(--radius2);
+      background:rgba(255,255,255,.04);
+      overflow:hidden;
+      display:flex;flex-direction:column;
+      min-height: 290px;
+    }
+    .pMedia{
+      height:140px;
+      background:radial-gradient(500px 200px at 20% 0%, rgba(30,91,255,.35), transparent 60%),
+                 radial-gradient(500px 200px at 80% 0%, rgba(79,124,255,.28), transparent 60%),
+                 rgba(0,0,0,.18);
+      border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+    }
+    .pBadges{position:absolute;top:10px;left:10px;display:flex;gap:8px;flex-wrap:wrap}
+    .badge{
+      font-size:11px;padding:6px 10px;border-radius:999px;
+      background:rgba(0,0,0,.25);
+      border:1px solid var(--border);
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .pBody{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
+    .pTitle{font-weight:900;line-height:1.3}
+    .pDesc{color:var(--muted);font-size:12px;line-height:1.5;min-height:34px}
+    .pFooter{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:auto}
+    .price{font-weight:900}
+    .price span{font-weight:700;color:var(--muted);font-size:12px;margin-inline-start:6px}
+
+    /* Drawer */
+    .overlay{
+      position:fixed;inset:0;background:rgba(0,0,0,.55);
+      display:none;z-index:70;
+    }
+    .overlay.show{display:block}
+    .drawer{
+      position:fixed;top:0;bottom:0;right:0;
+      width:min(420px, 92vw);
+      background:rgba(5,6,11,.92);
+      backdrop-filter: blur(12px);
+      border-left:1px solid var(--border);
+      box-shadow: -20px 0 40px rgba(0,0,0,.45);
+      transform:translateX(105%);
+      transition:transform .22s ease;
+      z-index:80;
+      display:flex;flex-direction:column;
+    }
+    [dir="ltr"] .drawer{right:auto;left:0;border-left:none;border-right:1px solid var(--border);box-shadow: 20px 0 40px rgba(0,0,0,.45);transform:translateX(-105%)}
+    .drawer.show{transform:translateX(0)}
+    .drawerHead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px;border-bottom:1px solid var(--border)}
+    .drawerBody{padding:14px;overflow:auto;display:flex;flex-direction:column;gap:10px;flex:1}
+    .drawerFoot{padding:14px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:10px}
+    .line{height:1px;background:var(--border);margin:6px 0}
+
+Fares, [07/01/2026 4:55 pm]
+.cartItem{
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      padding:10px;
+      display:flex;gap:10px;align-items:center;justify-content:space-between;
+    }
+    .ciLeft{display:flex;gap:10px;align-items:center}
+    .ciIcon{
+      width:42px;height:42px;border-radius:14px;
+      background:rgba(30,91,255,.18);
+      border:1px solid var(--border);
+      display:grid;place-items:center;
+      flex:0 0 auto;
+    }
+    .ciName{font-weight:900;font-size:13px;line-height:1.2}
+    .ciMeta{font-size:12px;color:var(--muted);margin-top:4px}
+    .ciRight{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .qty{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:6px 8px;
+      background:rgba(0,0,0,.15);
+    }
+    .qty button{
+      width:26px;height:26px;border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      cursor:pointer;
+    }
+    .qty span{min-width:16px;text-align:center;font-weight:900}
+
+    /* Pages */
+    .pages{padding:8px 0 26px}
+    .page{display:none}
+    .page.active{display:block}
+
+    /* Forms */
+    .formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:860px){.formGrid{grid-template-columns:1fr}}
+    .field{display:flex;flex-direction:column;gap:6px}
+    label{font-size:12px;color:var(--muted)}
+    input,select,textarea{
+      width:100%;padding:12px 12px;border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
+      outline:none;
+    }
+    textarea{min-height:110px;resize:vertical}
+
+    /* Tables */
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid var(--border);text-align:start}
+    th{font-size:12px;color:var(--muted);font-weight:800}
+
+    .notice{
+      border:1px dashed rgba(255,255,255,.22);
+      background:rgba(255,255,255,.03);
+      border-radius:18px;
+      padding:12px;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:13px;
+    }
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;word-break:break-all}
+    .footer{
+      margin-top:18px;
+      padding:18px 0;
+      color:var(--muted);
+      text-align:center;
+      border-top:1px solid var(--border);
+      font-size:12px;
+    }
+
+    /* SVG Icons */
+    .svg{width:82px;height:82px;opacity:.95;filter: drop-shadow(0 10px 14px rgba(0,0,0,.35));}
+    .svg path,.svg circle{vector-effect: non-scaling-stroke}
+  </style>
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">
+        <div class="logo">DX</div>
+        <div class="name">
+          <div class="nameLine" style="font-weight:900;font-size:14px">DEX treading</div>
+          <div class="tagline" id="tagline"></div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="btn ghost" href="#home" data-nav="home" id="navHome"></a>
+        <a class="btn ghost" href="#services" data-nav="services" id="navServices"></a>
+        <a class="btn ghost" href="#checkout" data-nav="checkout" id="navCheckout"></a>
+
+        <button class="btn cartBtn" id="openCartBtn" type="button">
+          <span id="cartBtnText"></span>
+          <span class="bubble" id="cartCountBubble" style="display:none">0</span>
+        </button>
+
+        <button class="btn primary" id="langBtn" type="button">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CART DRAWER -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" aria-label="Cart drawer">
+    <div class="drawerHead">
+      <div style="font-weight:900" id="cartTitle"></div>
+
+Fares, [07/01/2026 4:55 pm]
+<button class="btn" id="closeCartBtn" type="button">✕</button>
+    </div>
+    <div class="drawerBody" id="cartItems"></div>
+    <div class="drawerFoot">
+      <div class="notice" id="cartEmptyNotice" style="display:none"></div>
+      <div class="line"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <div style="font-weight:900" id="subtotalLabel"></div>
+        <div style="font-weight:900" id="subtotalValue"></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn danger" id="clearCartBtn" type="button"></button>
+        <a class="btn ok" href="#checkout" id="goCheckoutFromCart"></a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="pages">
+
+    <!-- HOME -->
+    <section class="page active" id="home">
+      <div class="container hero">
+        <div class="heroGrid">
+
+          <div class="card">
+            <h1 class="h1" id="heroTitle"></h1>
+            <p class="lead" id="heroDesc"></p>
+            <div class="ctaRow">
+              <a class="btn primary" href="#products" id="heroShopBtn"></a>
+              <a class="btn ok" href="#checkout" id="heroCheckoutBtn"></a>
+              <a class="btn" href="#services" id="heroServicesBtn"></a>
+            </div>
+
+            <div class="kpis">
+              <div class="kpi">
+                <strong id="kpi1Title"></strong>
+                <span id="kpi1Desc"></span>
+              </div>
+              <div class="kpi">
+                <strong id="kpi2Title"></strong>
+                <span id="kpi2Desc"></span>
+              </div>
+              <div class="kpi">
+                <strong id="kpi3Title"></strong>
+                <span id="kpi3Desc"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card soft">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+              <div>
+                <div style="font-weight:900;font-size:14px" id="quickTitle"></div>
+                <div class="muted small" id="quickDesc"></div>
+              </div>
+              <button class="btn" id="copyEthTopBtn" type="button"></button>
+            </div>
+            <div class="notice" style="margin-top:12px">
+              <div style="font-weight:900;margin-bottom:6px" id="ethBoxTitle"></div>
+              <div class="mono" id="ethAddress"></div>
+              <div class="muted small" style="margin-top:6px" id="ethHint"></div>
+            </div>
+
+            <div class="notice" style="margin-top:12px">
+              <div style="font-weight:900;margin-bottom:6px" id="priceRuleTitle"></div>
+              <div class="muted" id="priceRuleBody"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sectionHead" id="products" style="scroll-margin-top:90px">
+          <h2 id="productsTitle"></h2>
+          <div class="muted" id="productsSubtitle"></div>
+        </div>
+
+        <div class="gridProducts" id="productsGrid"></div>
+
+        <div class="footer">
+          <div>© <span id="year"></span> DEX treading</div>
+          <div id="footerNote"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="page" id="services">
+      <div class="container">
+        <div class="sectionHead">
+          <h2 id="servicesTitle"></h2>
+          <div class="muted" id="servicesSubtitle"></div>
+        </div>
+
+        <div class="card">
+          <div class="formGrid">
+            <div>
+              <h3 style="margin:0 0 10px" id="pricingTitle"></h3>
+              <div class="muted small" id="pricingHint"></div>
+              <div style="height:10px"></div>
+              <div style="overflow:auto">
+                <table>
+                  <thead>
+                    <tr>
+
+Fares, [07/01/2026 4:55 pm]
+<th id="thItem"></th>
+                      <th id="thCat"></th>
+                      <th id="thPrice"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="pricingTable"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <h3 style="margin:0 0 10px" id="payTitle"></h3>
+
+              <div class="notice" style="margin-bottom:10px">
+                <div style="font-weight:900" id="pay1Title"></div>
+                <div class="muted" id="pay1Val"></div>
+              </div>
+
+              <div class="notice" style="margin-bottom:10px">
+                <div style="font-weight:900" id="pay2Title"></div>
+                <div class="muted" id="pay2Val"></div>
+              </div>
+
+              <div class="notice" style="margin-bottom:10px">
+                <div style="font-weight:900" id="pay3Title"></div>
+                <div class="muted" id="pay3Val"></div>
+              </div>
+
+              <div class="notice">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+                  <div>
+                    <div style="font-weight:900" id="pay4Title"></div>
+                    <div class="muted small" id="pay4Hint"></div>
+                  </div>
+                  <button class="btn" id="copyEthBtn" type="button"></button>
+                </div>
+                <div style="height:8px"></div>
+                <div class="mono" id="ethAddress2"></div>
+              </div>
+
+              <div style="height:12px"></div>
+              <div class="notice" id="afterPayNote"></div>
+
+              <div style="height:12px"></div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <a class="btn primary" href="#home" id="backHomeBtn"></a>
+                <a class="btn ok" href="#checkout" id="goCheckoutBtn"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <div>© <span id="year2"></span> DEX treading</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHECKOUT -->
+    <section class="page" id="checkout">
+      <div class="container">
+        <div class="sectionHead">
+          <h2 id="checkoutTitle"></h2>
+          <div class="muted" id="checkoutSubtitle"></div>
+        </div>
+
+        <div class="formGrid">
+          <div class="card">
+            <h3 style="margin:0 0 10px" id="customerTitle"></h3>
+
+            <form id="orderForm">
+              <div class="formGrid">
+                <div class="field">
+                  <label id="fullNameLabel"></label>
+                  <input id="fullName" required />
+                </div>
+                <div class="field">
+                  <label id="phoneLabel"></label>
+                  <input id="phone" required />
+                </div>
+                <div class="field">
+                  <label id="emailLabel"></label>
+                  <input id="email" type="email" required />
+                </div>
+                <div class="field">
+                  <label id="countryLabel"></label>
+                  <input id="country" required />
+                </div>
+              </div>
+
+              <div class="field" style="margin-top:10px">
+                <label id="payMethodLabel"></label>
+                <select id="payMethod" required>
+                  <option value="bank_khartoum">Bank of Khartoum (8108407)</option>
+                  <option value="foory">Foory Sudan (52000220)</option>
+                  <option value="binance">Binance Pay (850037703)</option>
+                  <option value="eth">Crypto (Ethereum ERC20)</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label id="txLabel"></label>
+                <input id="txid" required />
+                <div class="muted small" id="txHint"></div>
+              </div>
+
+Fares, [07/01/2026 4:55 pm]
+<div class="field">
+                <label id="noteLabel"></label>
+                <textarea id="note"></textarea>
+              </div>
+
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+                <button class="btn ok" type="submit" id="generateBtn"></button>
+                <button class="btn" type="button" id="copyOrderBtn"></button>
+                <a class="btn primary" id="emailOrderBtn" href="#" target="_blank" rel="noopener"></a>
+              </div>
+
+              <div style="height:10px"></div>
+              <div class="notice" id="checkoutHelp"></div>
+            </form>
+          </div>
+
+          <div class="card">
+            <h3 style="margin:0 0 10px" id="summaryTitle"></h3>
+
+            <div class="notice" id="emptyCartCheckout"></div>
+
+            <div id="summaryWrap" style="display:none">
+              <div style="overflow:auto">
+                <table>
+                  <thead>
+                    <tr>
+                      <th id="sumItem"></th>
+                      <th id="sumQty"></th>
+                      <th id="sumPrice"></th>
+                      <th id="sumTotal"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="summaryTable"></tbody>
+                </table>
+              </div>
+
+              <div style="height:10px"></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+                <div style="font-weight:900" id="totalLabel"></div>
+                <div style="font-weight:900" id="totalValue"></div>
+              </div>
+
+              <div style="height:12px"></div>
+              <div class="notice">
+                <div style="font-weight:900;margin-bottom:6px" id="merchantTitle"></div>
+                <div class="muted small" id="merchantHint"></div>
+                <div style="height:8px"></div>
+                <div class="mono" id="merchantEmail"></div>
+              </div>
+
+              <div style="height:12px"></div>
+              <div class="notice">
+                <div style="font-weight:900;margin-bottom:6px" id="ethPayTitle"></div>
+                <div class="mono" id="ethAddress3"></div>
+                <div class="muted small" style="margin-top:6px" id="ethPayHint"></div>
+              </div>
+
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+                <button class="btn danger" type="button" id="clearCartBtnCheckout"></button>
+                <a class="btn" href="#home" id="backShopBtn"></a>
+              </div>
+            </div>
+
+            <div style="height:12px"></div>
+            <div class="notice" id="orderPreviewBox" style="display:none">
+              <div style="font-weight:900;margin-bottom:6px" id="orderPreviewTitle"></div>
+              <div class="mono small" id="orderPreviewText"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="footer">
+          <div>© <span id="year3"></span> DEX treading</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // ====== FINAL CONFIG (no PayPal) ======
+    var ETH_ADDRESS = "0xb56a89f790060cbb0f08d02234921e5fefff11a6";
+    var MERCHANT_EMAIL = "bfars725@gmail.com";
+    var CURRENCY = "USD";
+
+    // ====== Products (final prices) ======
+    var PRODUCTS = [
+      { id:"c_classic", category:"Courses", tag:"Course", price:10.00,
+        name_ar:"كورس تعلم التداول من الصفر - الكورس الكلاسيكي",
+        name_en:"Trading From Zero - Classic Course",
+        desc_ar:"محتوى منظم للمبتدئين + تطبيق عملي.",
+        desc_en:"Structured beginner content + practical practice.",
+        icon:"course"
+      },
+      { id:"c_ict", category:"Courses", tag:"Course", price:10.00,
+        name_ar:"كورس تعلم التداول من الصفر - كورس ICT",
+
+Fares, [07/01/2026 4:55 pm]
+name_en:"Trading From Zero - ICT Course",
+        desc_ar:"استراتيجية ICT مع أمثلة وتطبيق.",
+        desc_en:"ICT concepts with examples & execution.",
+        icon:"ict"
+      },
+      { id:"c_smc", category:"Courses", tag:"Course", price:10.00,
+        name_ar:"كورس تعلم التداول من الصفر - كورس SMC",
+        name_en:"Trading From Zero - SMC Course",
+        desc_ar:"Smart Money Concepts بشكل مبسط.",
+        desc_en:"Smart Money Concepts simplified.",
+        icon:"smc"
+      },
+      { id:"c_sk", category:"Courses", tag:"Course", price:10.00,
+        name_ar:"كورس تعلم التداول من الصفر - كورس SK",
+        name_en:"Trading From Zero - SK Course",
+        desc_ar:"منهج واضح + أمثلة جاهزة.",
+        desc_en:"Clear framework + ready examples.",
+        icon:"sk"
+      },
+      { id:"usdt", category:"USDT", tag:"Service", price:10.00,
+        name_ar:"شحن USDT",
+        name_en:"USDT Top-up",
+        desc_ar:"شحن سريع وآمن حسب التعليمات.",
+        desc_en:"Fast & secure top-up as instructed.",
+        icon:"usdt"
+      },
+      { id:"ex_create", category:"Exness", tag:"Service", price:10.00,
+        name_ar:"حسابات اكسنس - إنشاء حسابات Exness",
+        name_en:"Exness - Account Creation",
+        desc_ar:"إنشاء حساب مع إعدادات صحيحة.",
+        desc_en:"Create account with correct setup.",
+        icon:"exness"
+      },
+      { id:"ex_proof", category:"Exness", tag:"Service", price:10.00,
+        name_ar:"حسابات اكسنس - توثيق السكن للحسابات الجاهزة",
+        name_en:"Exness - Proof of Residence (Ready Accounts)",
+        desc_ar:"مساعدة في توثيق السكن للحساب.",
+        desc_en:"Help with proof of residence verification.",
+        icon:"proof"
+      },
+      { id:"bot_gold", category:"Bots", tag:"Bot", price:50.00,
+        name_ar:"بوتات التداول الآلي - بوت تداول الذهب",
+        name_en:"Auto Trading Bots - Gold Bot",
+        desc_ar:"إعدادات محسّنة لتداول الذهب.",
+        desc_en:"Optimized settings for Gold trading.",
+        icon:"gold"
+      },
+      { id:"bot_fx", category:"Bots", tag:"Bot", price:30.00,
+        name_ar:"بوتات التداول الآلي - بوت تداول الأزواج",
+        name_en:"Auto Trading Bots - FX Pairs Bot",
+        desc_ar:"تداول أزواج الفوركس آليًا.",
+        desc_en:"Automate FX pairs trading.",
+        icon:"fx"
+      },
+      { id:"bot_stk", category:"Bots", tag:"Bot", price:30.00,
+        name_ar:"بوتات التداول الآلي - بوت تداول الأسهم والمؤشرات",
+        name_en:"Auto Trading Bots - Stocks & Indices Bot",
+        desc_ar:"بوت للأسهم والمؤشرات بإعدادات واضحة.",
+        desc_en:"Stocks & indices bot with clear presets.",
+        icon:"stocks"
+      },
+      { id:"bot_crypto", category:"Bots", tag:"Bot", price:30.00,
+        name_ar:"بوتات التداول الآلي - بوت تداول العملات الرقمية",
+        name_en:"Auto Trading Bots - Crypto Bot",
+        desc_ar:"بوت للعملات الرقمية مع إدارة مخاطر.",
+        desc_en:"Crypto bot with risk management.",
+        icon:"crypto"
+      }
+    ];
+
+    // ====== i18n ======
+    var I18N = {
+      ar: {
+        tagline: "معًا لنشر المعرفة المالية في دول أفريقيا و شمال أفريقيا",
+        nav_home: "الرئيسية",
+        nav_services: "الخدمات والأسعار",
+        nav_checkout: "الدفع والشراء",
+        cart: "السلة",
+        hero_title: "متجر DEX treading",
+        hero_desc: "اختر المنتج، أضفه للسلة، ثم أكمل الدفع. ستقوم صفحة الدفع بتوليد “نص الطلب” لإرساله لنا بسهولة.",
+        hero_shop: "تصفح المنتجات",
+        hero_checkout: "إتمام الشراء",
+        hero_services: "طرق الدفع والأسعار",
+        k1t: "AR / EN", k1d: "تبديل اللغة بضغطة",
+        k2t: "دفع مرن", k2d: "بنك / فوري / بايننس / ERC20",
+        k3t: "طلب جاهز", k3d: "توليد نص الطلب + نسخة وإرسال",
+        quick_title: "معلومات سريعة",
+        quick_desc: "عنوان ERC20 جاهز للنسخ",
+        copy_eth: "نسخ عنوان ETH",
+        eth_box_title: "عنوان الدفع على شبكة Ethereum (ERC20)",
+
+Fares, [07/01/2026 4:55 pm]
+eth_hint: "أرسل USDT (ERC20) أو ETH إلى هذا العنوان فقط.",
+        price_rule_title: "قواعد الأسعار",
+        price_rule_body: "كل المنتجات والخدمات = 10$ — البوتات = 30$ — بوت الذهب = 50$",
+        products_title: "المنتجات والخدمات",
+        products_subtitle: "اضغط (أضف للسلة) ثم اذهب للدفع.",
+        add: "أضف للسلة",
+        view_cart: "عرض السلة",
+        empty_cart: "السلة فارغة. أضف منتجات من الصفحة الرئيسية أولًا.",
+        subtotal: "الإجمالي",
+        clear_cart: "تفريغ السلة",
+        go_checkout: "الذهاب للدفع",
+        services_title: "الخدمات والأسعار",
+        services_sub: "كل الأسعار بالدولار (USD) ويمكن الدفع بالطرق التالية.",
+        pricing_title: "جدول الأسعار",
+        pricing_hint: "الأسعار ثابتة حسب القواعد المتفق عليها.",
+        th_item: "المنتج/الخدمة",
+        th_cat: "التصنيف",
+        th_price: "السعر",
+        pay_title: "طرق الدفع",
+        pay1t: "بنك الخرطوم", pay1v: "رقم الحساب: 8108407",
+        pay2t: "فوري سودان", pay2v: "رقم الحساب: 52000220",
+        pay3t: "Binance Pay", pay3v: "المعرّف: 850037703",
+        pay4t: "عملات رقمية (ERC20)", pay4h: "انسخ العنوان أدناه",
+        after_pay: "بعد الدفع: اذهب لصفحة (الدفع والشراء) واكتب TxID/رقم العملية لتوليد نص الطلب.",
+        back_home: "رجوع للرئيسية",
+        checkout_go: "إتمام الشراء",
+        checkout_title: "إتمام الدفع والشراء",
+        checkout_sub: "املأ البيانات + TxID، ثم اضغط “توليد الطلب”.",
+        customer_title: "بيانات العميل",
+        full_name: "الاسم الكامل",
+        phone: "رقم الهاتف",
+        email: "البريد الإلكتروني",
+        country: "الدولة/المدينة",
+        pay_method: "طريقة الدفع",
+        tx: "TxID / رقم العملية",
+        tx_hint: "مثال: رقم التحويل البنكي أو معرف العملية أو TxID للعملات الرقمية.",
+        note: "ملاحظة إضافية (اختياري)",
+        generate: "توليد الطلب",
+        copy_order: "نسخ نص الطلب",
+        email_order: "إرسال عبر البريد",
+        checkout_help: "بعد توليد الطلب: اضغط (نسخ) ثم أرسله لنا على واتساب/البريد. زر (إرسال عبر البريد) جاهز مباشرة.",
+        summary_title: "ملخص الطلب",
+        sum_item:"الصنف", sum_qty:"الكمية", sum_price:"السعر", sum_total:"الإجمالي",
+        total:"المجموع",
+        merchant_title:"بيانات الاستلام",
+        merchant_hint:"إرسال الطلب إلى البريد التالي:",
+        eth_pay_title:"عنوان الدفع (ERC20)",
+        eth_pay_hint:"انسخ العنوان وتأكد من اختيار شبكة Ethereum (ERC20).",
+        clear_checkout:"تفريغ السلة",
+        back_shop:"الرجوع للمنتجات",
+        preview_title:"نص الطلب الجاهز",
+        footer_note:"هذا متجر واجهة فقط (بدون باك-إند). يمكن ربطه لاحقًا بواتساب/Google Sheets بسهولة."
+      },
+      en: {
+        tagline: "Together to spread financial knowledge in Africa & North Africa",
+        nav_home: "Home",
+        nav_services: "Services & Pricing",
+        nav_checkout: "Checkout",
+        cart: "Cart",
+        hero_title: "DEX treading Store",
+        hero_desc: "Pick an item, add to cart, then checkout. The checkout page generates a ready order text to send us.",
+        hero_shop: "Browse products",
+        hero_checkout: "Checkout",
+        hero_services: "Pricing & Payments",
+        k1t: "AR / EN", k1d: "One-click language switch",
+        k2t: "Flexible Pay", k2d: "Bank / Foory / Binance / ERC20",
+        k3t: "Ready Order", k3d: "Generate + copy + send",
+        quick_title: "Quick Info",
+        quick_desc: "ERC20 address ready to copy",
+        copy_eth: "Copy ETH address",
+        eth_box_title: "Payment address on Ethereum (ERC20)",
+        eth_hint: "Send USDT (ERC20) or ETH to this address only.",
+        price_rule_title: "Pricing Rules",
+        price_rule_body: "All products/services = $10 — Bots = $30 — Gold Bot = $50",
+        products_title: "Products & Services",
+        products_subtitle: "Click (Add to cart) then go to Checkout.",
+
+Fares, [07/01/2026 4:55 pm]
+add: "Add to cart",
+        view_cart: "View cart",
+        empty_cart: "Your cart is empty. Add items from the Home page first.",
+        subtotal: "Total",
+        clear_cart: "Clear cart",
+        go_checkout: "Go to checkout",
+        services_title: "Services & Pricing",
+        services_sub: "All prices are in USD. Pay using the methods below.",
+        pricing_title: "Pricing Table",
+        pricing_hint: "Fixed pricing based on the agreed rules.",
+        th_item: "Item",
+        th_cat: "Category",
+        th_price: "Price",
+        pay_title: "Payment Methods",
+        pay1t: "Bank of Khartoum", pay1v: "Account: 8108407",
+        pay2t: "Foory Sudan", pay2v: "Account: 52000220",
+        pay3t: "Binance Pay", pay3v: "ID: 850037703",
+        pay4t: "Crypto (ERC20)", pay4h: "Copy the address below",
+        after_pay: "After payment: go to Checkout and enter your TxID/transaction number to generate the order text.",
+        back_home: "Back to Home",
+        checkout_go: "Checkout",
+        checkout_title: "Checkout & Purchase",
+        checkout_sub: "Fill details + TxID, then click “Generate Order”.",
+        customer_title: "Customer Info",
+        full_name: "Full name",
+        phone: "Phone",
+        email: "Email",
+        country: "Country/City",
+        pay_method: "Payment method",
+        tx: "TxID / Transaction number",
+        tx_hint: "Example: bank transfer reference, payment ID, or crypto TxID.",
+        note: "Extra note (optional)",
+        generate: "Generate order",
+        copy_order: "Copy order text",
+        email_order: "Send via email",
+        checkout_help: "After generating: copy and send via WhatsApp/email. The email button is ready.",
+        summary_title: "Order Summary",
+        sum_item:"Item", sum_qty:"Qty", sum_price:"Price", sum_total:"Total",
+        total:"Total",
+        merchant_title:"Receiver",
+        merchant_hint:"Send your order to:",
+        eth_pay_title:"Payment address (ERC20)",
+        eth_pay_hint:"Copy the address and ensure Ethereum network (ERC20).",
+        clear_checkout:"Clear cart",
+        back_shop:"Back to products",
+        preview_title:"Ready order text",
+        footer_note:"Frontend-only store (no backend). Can be connected to WhatsApp/Sheets later."
+      }
+    };
+
+    // ====== State ======
+    var CART_KEY = "dex_store_cart_v3";
+    var LANG_KEY = "dex_store_lang_v3";
+
+    function getLang(){ return localStorage.getItem(LANG_KEY) || "ar"; }
+    function setLang(l){ localStorage.setItem(LANG_KEY, l); applyLang(); renderAll(); }
+
+    function t(key){
+      var lang = getLang();
+      return I18N[lang][key];
+    }
+
+    function getCart(){
+      try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+      catch(e){ return []; }
+    }
+    function saveCart(cart){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+
+    function findProduct(id){
+      for(var i=0;i<PRODUCTS.length;i++){ if(PRODUCTS[i].id===id) return PRODUCTS[i]; }
+      return null;
+    }
+
+    function addToCart(id){
+      var cart = getCart();
+      var found = false;
+      for(var i=0;i<cart.length;i++){
+        if(cart[i].id===id){ cart[i].qty += 1; found = true; break; }
+      }
+      if(!found){ cart.push({id:id, qty:1}); }
+      saveCart(cart);
+      renderAll();
+      openCart(); // show immediate feedback
+    }
+
+    function setQty(id, qty){
+      var cart = getCart();
+      var next = [];
+      for(var i=0;i<cart.length;i++){
+        if(cart[i].id===id){
+          var q = qty;
+          if(q < 1) q = 1;
+          next.push({id:id, qty:q});
+        } else next.push(cart[i]);
+      }
+      saveCart(next);
+      renderAll();
+    }
+
+    function removeFromCart(id){
+      var cart = getCart();
+      var next = [];
+      for(var i=0;i<cart.length;i++){ if(cart[i].id!==id) next.push(cart[i]); }
+      saveCart(next);
+      renderAll();
+    }
+
+    function clearCart(){
+      saveCart([]);
+      renderAll();
+    }
+
+Fares, [07/01/2026 4:55 pm]
+function cartDetailed(){
+      var cart = getCart();
+      var out = [];
+      for(var i=0;i<cart.length;i++){
+        var p = findProduct(cart[i].id);
+        if(p) out.push({p:p, qty:cart[i].qty});
+      }
+      return out;
+    }
+
+    function cartCount(){
+      var cart = getCart();
+      var c = 0;
+      for(var i=0;i<cart.length;i++) c += cart[i].qty;
+      return c;
+    }
+
+    function cartTotal(){
+      var items = cartDetailed();
+      var sum = 0;
+      for(var i=0;i<items.length;i++) sum += items[i].p.price * items[i].qty;
+      return sum;
+    }
+
+    // ====== Router (hash pages) ======
+    function setActivePage(){
+      var hash = (location.hash || "#home").replace("#","");
+      var pages = document.querySelectorAll(".page");
+      for(var i=0;i<pages.length;i++) pages[i].classList.remove("active");
+      var page = document.getElementById(hash) || document.getElementById("home");
+      page.classList.add("active");
+      window.scrollTo({top:0, behavior:"auto"});
+      renderAll();
+    }
+    window.addEventListener("hashchange", setActivePage);
+
+    // ====== Drawer ======
+    var overlay = null, drawer = null;
+    function openCart(){
+      overlay.classList.add("show");
+      drawer.classList.add("show");
+    }
+    function closeCart(){
+      overlay.classList.remove("show");
+      drawer.classList.remove("show");
+    }
+
+    // ====== Icons (inline SVG) ======
+    function iconSVG(kind){
+      // simple, clean, internal (no external images)
+      var stroke = "rgba(255,255,255,.85)";
+      var fill = "rgba(30,91,255,.20)";
+      var fill2 = "rgba(79,124,255,.18)";
+      function base(content){
+        return ''+
+        '<svg class="svg" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+          '<defs>'+
+            '<linearGradient id="g1" x1="12" y1="10" x2="84" y2="86" gradientUnits="userSpaceOnUse">'+
+              '<stop stop-color="'+fill+'"/><stop offset="1" stop-color="'+fill2+'"/>'+
+            '</linearGradient>'+
+          '</defs>'+
+          '<rect x="10" y="10" width="76" height="76" rx="22" fill="url(#g1)" stroke="rgba(255,255,255,.12)"/>'+
+          content+
+        '</svg>';
+      }
+
+      if(kind==="usdt"){
+        return base(
+          '<circle cx="48" cy="48" r="18" stroke="'+stroke+'" stroke-width="2"/>'+
+          '<path d="M38 41h20M40 48h16M38 55h20" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M48 30v36" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'
+        );
+      }
+      if(kind==="gold"){
+        return base(
+          '<path d="M28 54l10-20h20l10 20-10 10H38L28 54z" stroke="'+stroke+'" stroke-width="2" fill="rgba(255,176,32,.14)"/>'+
+          '<path d="M38 34l10 20 10-20" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+        );
+      }
+      if(kind==="crypto"){
+        return base(
+          '<path d="M48 28l14 10v20L48 68 34 58V38l14-10z" stroke="'+stroke+'" stroke-width="2"/>'+
+          '<path d="M48 34v28" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M42 42h10a6 6 0 010 12H42" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'
+        );
+      }
+      if(kind==="fx"){
+        return base(
+          '<path d="M28 60c10-18 18-18 28 0" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M40 36h28" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M40 36l-8 8" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M68 36l-8 8" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<circle cx="32" cy="44" r="3" fill="'+stroke+'"/>'+
+          '<circle cx="60" cy="60" r="3" fill="'+stroke+'"/>'
+        );
+
+Fares, [07/01/2026 4:55 pm]
+}
+      if(kind==="stocks"){
+        return base(
+          '<path d="M30 62V46m12 16V38m12 24V44m12 18V34" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M28 66h40" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M30 32l12 10 12-8 12 6" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+        );
+      }
+      if(kind==="exness"){
+        return base(
+          '<path d="M30 58V38h10l8 10 8-10h10v20H56l-8-10-8 10H30z" stroke="'+stroke+'" stroke-width="2" stroke-linejoin="round"/>'+
+          '<path d="M30 62h36" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'
+        );
+      }
+      if(kind==="proof"){
+        return base(
+          '<path d="M34 30h28v36H34V30z" stroke="'+stroke+'" stroke-width="2" stroke-linejoin="round"/>'+
+          '<path d="M40 40h16M40 48h16M40 56h12" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M62 38l6 6" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'
+        );
+      }
+      // courses / others
+      return base(
+        '<path d="M30 40l18-8 18 8-18 8-18-8z" stroke="'+stroke+'" stroke-width="2" stroke-linejoin="round"/>'+
+        '<path d="M30 40v16l18 8 18-8V40" stroke="'+stroke+'" stroke-width="2" stroke-linejoin="round"/>'+
+        '<path d="M66 44v14" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'
+      );
+    }
+
+    // ====== Render ======
+    function applyLang(){
+      var lang = getLang();
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang==="ar") ? "rtl" : "ltr";
+
+      // Top texts
+      document.getElementById("tagline").textContent = t("tagline");
+      document.getElementById("navHome").textContent = t("nav_home");
+      document.getElementById("navServices").textContent = t("nav_services");
+      document.getElementById("navCheckout").textContent = t("nav_checkout");
+      document.getElementById("cartBtnText").textContent = t("cart");
+      document.getElementById("cartTitle").textContent = t("cart");
+
+      // Hero
+      document.getElementById("heroTitle").textContent = t("hero_title");
+      document.getElementById("heroDesc").textContent = t("hero_desc");
+      document.getElementById("heroShopBtn").textContent = t("hero_shop");
+      document.getElementById("heroCheckoutBtn").textContent = t("hero_checkout");
+      document.getElementById("heroServicesBtn").textContent = t("hero_services");
+      document.getElementById("kpi1Title").textContent = t("k1t");
+      document.getElementById("kpi1Desc").textContent = t("k1d");
+      document.getElementById("kpi2Title").textContent = t("k2t");
+      document.getElementById("kpi2Desc").textContent = t("k2d");
+      document.getElementById("kpi3Title").textContent = t("k3t");
+      document.getElementById("kpi3Desc").textContent = t("k3d");
+      document.getElementById("quickTitle").textContent = t("quick_title");
+      document.getElementById("quickDesc").textContent = t("quick_desc");
+      document.getElementById("copyEthTopBtn").textContent = t("copy_eth");
+      document.getElementById("ethBoxTitle").textContent = t("eth_box_title");
+      document.getElementById("ethHint").textContent = t("eth_hint");
+      document.getElementById("priceRuleTitle").textContent = t("price_rule_title");
+      document.getElementById("priceRuleBody").textContent = t("price_rule_body");
+
+      document.getElementById("productsTitle").textContent = t("products_title");
+      document.getElementById("productsSubtitle").textContent = t("products_subtitle");
+
+      // Cart drawer
+      document.getElementById("cartEmptyNotice").textContent = t("empty_cart");
+      document.getElementById("subtotalLabel").textContent = t("subtotal");
+      document.getElementById("clearCartBtn").textContent = t("clear_cart");
+      document.getElementById("goCheckoutFromCart").textContent = t("go_checkout");
+
+Fares, [07/01/2026 4:55 pm]
+// Services
+      document.getElementById("servicesTitle").textContent = t("services_title");
+      document.getElementById("servicesSubtitle").textContent = t("services_sub");
+      document.getElementById("pricingTitle").textContent = t("pricing_title");
+      document.getElementById("pricingHint").textContent = t("pricing_hint");
+      document.getElementById("thItem").textContent = t("th_item");
+      document.getElementById("thCat").textContent = t("th_cat");
+      document.getElementById("thPrice").textContent = t("th_price");
+      document.getElementById("payTitle").textContent = t("pay_title");
+      document.getElementById("pay1Title").textContent = t("pay1t");
+      document.getElementById("pay1Val").textContent = t("pay1v");
+      document.getElementById("pay2Title").textContent = t("pay2t");
+      document.getElementById("pay2Val").textContent = t("pay2v");
+      document.getElementById("pay3Title").textContent = t("pay3t");
+      document.getElementById("pay3Val").textContent = t("pay3v");
+      document.getElementById("pay4Title").textContent = t("pay4t");
+      document.getElementById("pay4Hint").textContent = t("pay4h");
+      document.getElementById("copyEthBtn").textContent = t("copy_eth");
+      document.getElementById("afterPayNote").textContent = t("after_pay");
+      document.getElementById("backHomeBtn").textContent = t("back_home");
+      document.getElementById("goCheckoutBtn").textContent = t("checkout_go");
+
+      // Checkout
+      document.getElementById("checkoutTitle").textContent = t("checkout_title");
+      document.getElementById("checkoutSubtitle").textContent = t("checkout_sub");
+      document.getElementById("customerTitle").textContent = t("customer_title");
+      document.getElementById("fullNameLabel").textContent = t("full_name");
+      document.getElementById("phoneLabel").textContent = t("phone");
+      document.getElementById("emailLabel").textContent = t("email");
+      document.getElementById("countryLabel").textContent = t("country");
+      document.getElementById("payMethodLabel").textContent = t("pay_method");
+      document.getElementById("txLabel").textContent = t("tx");
+      document.getElementById("txHint").textContent = t("tx_hint");
+      document.getElementById("noteLabel").textContent = t("note");
+      document.getElementById("generateBtn").textContent = t("generate");
+      document.getElementById("copyOrderBtn").textContent = t("copy_order");
+      document.getElementById("emailOrderBtn").textContent = t("email_order");
+      document.getElementById("checkoutHelp").textContent = t("checkout_help");
+
+      document.getElementById("summaryTitle").textContent = t("summary_title");
+      document.getElementById("sumItem").textContent = t("sum_item");
+      document.getElementById("sumQty").textContent = t("sum_qty");
+      document.getElementById("sumPrice").textContent = t("sum_price");
+      document.getElementById("sumTotal").textContent = t("sum_total");
+      document.getElementById("totalLabel").textContent = t("total");
+
+      document.getElementById("merchantTitle").textContent = t("merchant_title");
+      document.getElementById("merchantHint").textContent = t("merchant_hint");
+      document.getElementById("ethPayTitle").textContent = t("eth_pay_title");
+      document.getElementById("ethPayHint").textContent = t("eth_pay_hint");
+
+      document.getElementById("clearCartBtnCheckout").textContent = t("clear_checkout");
+      document.getElementById("backShopBtn").textContent = t("back_shop");
+
+      document.getElementById("orderPreviewTitle").textContent = t("preview_title");
+
+      document.getElementById("footerNote").textContent = t("footer_note");
+
+      // placeholders
+      document.getElementById("fullName").placeholder = t("full_name");
+      document.getElementById("phone").placeholder = t("phone");
+
+Fares, [07/01/2026 4:55 pm]
+document.getElementById("email").placeholder = t("email");
+      document.getElementById("country").placeholder = t("country");
+      document.getElementById("txid").placeholder = t("tx");
+      document.getElementById("note").placeholder = t("note");
+    }
+
+    function renderProducts(){
+      var lang = getLang();
+      var grid = document.getElementById("productsGrid");
+      var html = "";
+
+      for(var i=0;i<PRODUCTS.length;i++){
+        var p = PRODUCTS[i];
+        var title = (lang==="ar") ? p.name_ar : p.name_en;
+        var desc = (lang==="ar") ? p.desc_ar : p.desc_en;
+
+        html += ''+
+          '<div class="product">'+
+            '<div class="pMedia">'+
+              '<div class="pBadges">'+
+                '<span class="badge">'+p.tag+'</span>'+
+                '<span class="badge">'+p.price.toFixed(2)+' '+CURRENCY+'</span>'+
+              '</div>'+
+              iconSVG(p.icon)+
+            '</div>'+
+            '<div class="pBody">'+
+              '<div class="pTitle">'+escapeHtml(title)+'</div>'+
+              '<div class="pDesc">'+escapeHtml(desc)+'</div>'+
+              '<div class="pFooter">'+
+                '<div class="price">'+p.price.toFixed(2)+' '+CURRENCY+' <span>/ '+(lang==="ar" ? "للمنتج" : "item")+'</span></div>'+
+                '<button class="btn primary" type="button" data-add="'+p.id+'">'+t("add")+'</button>'+
+              '</div>'+
+            '</div>'+
+          '</div>';
+      }
+
+      grid.innerHTML = html;
+
+      var addBtns = grid.querySelectorAll("[data-add]");
+      for(var j=0;j<addBtns.length;j++){
+        (function(btn){
+          btn.addEventListener("click", function(){
+            var id = btn.getAttribute("data-add");
+            addToCart(id);
+          });
+        })(addBtns[j]);
+      }
+    }
+
+    function renderCartDrawer(){
+      var items = cartDetailed();
+      var box = document.getElementById("cartItems");
+      var empty = document.getElementById("cartEmptyNotice");
+
+      if(items.length === 0){
+        empty.style.display = "block";
+        box.innerHTML = "";
+      } else {
+        empty.style.display = "none";
+        var html = "";
+        for(var i=0;i<items.length;i++){
+          var it = items[i];
+          var p = it.p;
+          var lang = getLang();
+          var name = (lang==="ar") ? p.name_ar : p.name_en;
+
+          html += ''+
+            '<div class="cartItem">'+
+              '<div class="ciLeft">'+
+                '<div class="ciIcon">'+miniIcon(p.icon)+'</div>'+
+                '<div>'+
+                  '<div class="ciName">'+escapeHtml(name)+'</div>'+
+                  '<div class="ciMeta">'+(p.price.toFixed(2))+' '+CURRENCY+'</div>'+
+                '</div>'+
+              '</div>'+
+              '<div class="ciRight">'+
+                '<div class="qty">'+
+                  '<button type="button" data-dec="'+p.id+'">−</button>'+
+                  '<span>'+it.qty+'</span>'+
+                  '<button type="button" data-inc="'+p.id+'">+</button>'+
+                '</div>'+
+                '<button class="btn danger" type="button" data-rm="'+p.id+'">✕</button>'+
+              '</div>'+
+            '</div>';
+        }
+        box.innerHTML = html;
+
+        var inc = box.querySelectorAll("[data-inc]");
+        for(var a=0;a<inc.length;a++){
+          (function(btn){
+            btn.addEventListener("click", function(){
+              var id = btn.getAttribute("data-inc");
+              var cart = getCart();
+              for(var k=0;k<cart.length;k++){
+                if(cart[k].id===id){ setQty(id, cart[k].qty+1); break; }
+              }
+            });
+          })(inc[a]);
+        }
+
+        var dec = box.querySelectorAll("[data-dec]");
+        for(var b=0;b<dec.length;b++){
+          (function(btn){
+            btn.addEventListener("click", function(){
+              var id = btn.getAttribute("data-dec");
+              var cart = getCart();
+              for(var k=0;k<cart.length;k++){
+                if(cart[k].id===id){ setQty(id, cart[k].qty-1); break; }
+              }
+            });
+          })(dec[b]);
+        }
+
+Fares, [07/01/2026 4:55 pm]
+var rm = box.querySelectorAll("[data-rm]");
+        for(var c=0;c<rm.length;c++){
+          (function(btn){
+            btn.addEventListener("click", function(){
+              removeFromCart(btn.getAttribute("data-rm"));
+            });
+          })(rm[c]);
+        }
+      }
+
+      document.getElementById("subtotalValue").textContent = cartTotal().toFixed(2)+" "+CURRENCY;
+
+      var count = cartCount();
+      var bubble = document.getElementById("cartCountBubble");
+      if(count > 0){
+        bubble.style.display = "grid";
+        bubble.textContent = String(count);
+      } else {
+        bubble.style.display = "none";
+      }
+    }
+
+    function miniIcon(kind){
+      // tiny icon for cart
+      var color = "rgba(255,255,255,.85)";
+      if(kind==="gold") return '<span style="font-weight:900;color:'+color+'">Au</span>';
+      if(kind==="usdt") return '<span style="font-weight:900;color:'+color+'">₮</span>';
+      if(kind==="crypto") return '<span style="font-weight:900;color:'+color+'">₿</span>';
+      if(kind==="fx") return '<span style="font-weight:900;color:'+color+'">FX</span>';
+      if(kind==="stocks") return '<span style="font-weight:900;color:'+color+'">≋</span>';
+      if(kind==="exness") return '<span style="font-weight:900;color:'+color+'">EX</span>';
+      if(kind==="proof") return '<span style="font-weight:900;color:'+color+'">ID</span>';
+      return '<span style="font-weight:900;color:'+color+'">📘</span>';
+    }
+
+    function renderServices(){
+      var tbody = document.getElementById("pricingTable");
+      var lang = getLang();
+      var rows = "";
+      for(var i=0;i<PRODUCTS.length;i++){
+        var p = PRODUCTS[i];
+        rows += "<tr>"+
+          "<td>"+escapeHtml((lang==="ar")?p.name_ar:p.name_en)+"</td>"+
+          "<td>"+escapeHtml(p.category)+"</td>"+
+          "<td>"+p.price.toFixed(2)+" "+CURRENCY+"</td>"+
+        "</tr>";
+      }
+      tbody.innerHTML = rows;
+
+      document.getElementById("ethAddress2").textContent = ETH_ADDRESS;
+    }
+
+    function renderCheckout(){
+      var items = cartDetailed();
+      var empty = document.getElementById("emptyCartCheckout");
+      var wrap = document.getElementById("summaryWrap");
+      var table = document.getElementById("summaryTable");
+
+      document.getElementById("merchantEmail").textContent = MERCHANT_EMAIL;
+      document.getElementById("ethAddress3").textContent = ETH_ADDRESS;
+
+      if(items.length === 0){
+        empty.textContent = t("empty_cart");
+        empty.style.display = "block";
+        wrap.style.display = "none";
+        document.getElementById("orderPreviewBox").style.display = "none";
+        document.getElementById("emailOrderBtn").setAttribute("href", "#");
+        return;
+      }
+
+      empty.style.display = "none";
+      wrap.style.display = "block";
+
+      var rows = "";
+      for(var i=0;i<items.length;i++){
+        var it = items[i];
+        var p = it.p;
+        var lang = getLang();
+        var name = (lang==="ar") ? p.name_ar : p.name_en;
+        rows += "<tr>"+
+          "<td>"+escapeHtml(name)+"</td>"+
+          "<td>"+it.qty+"</td>"+
+          "<td>"+p.price.toFixed(2)+" "+CURRENCY+"</td>"+
+          "<td>"+(p.price*it.qty).toFixed(2)+" "+CURRENCY+"</td>"+
+        "</tr>";
+      }
+      table.innerHTML = rows;
+
+      document.getElementById("totalValue").textContent = cartTotal().toFixed(2)+" "+CURRENCY;
+    }
+
+    function renderAll(){
+      document.getElementById("ethAddress").textContent = ETH_ADDRESS;
+      renderProducts();
+      renderCartDrawer();
+      renderServices();
+      renderCheckout();
+    }
+
+    // ====== Order generation ======
+    function buildOrderText(form){
+      var lang = getLang();
+      var items = cartDetailed();
+      var lines = [];
+      lines.push("DEX treading - Order");
+      lines.push("--------------------------------");
+
+Fares, [07/01/2026 4:55 pm]
+lines.push("Name: " + (form.fullName || ""));
+      lines.push("Phone: " + (form.phone || ""));
+      lines.push("Email: " + (form.email || ""));
+      lines.push("Country/City: " + (form.country || ""));
+      lines.push("Payment method: " + (form.payMethod || ""));
+      lines.push("TxID/Ref: " + (form.txid || ""));
+      if(form.note){ lines.push("Note: " + form.note); }
+      lines.push("--------------------------------");
+      lines.push("Items:");
+      for(var i=0;i<items.length;i++){
+        var it = items[i];
+        var p = it.p;
+        var name = (lang==="ar") ? p.name_ar : p.name_en;
+        lines.push("- " + name + " | Qty: " + it.qty + " | " + (p.price*it.qty).toFixed(2) + " " + CURRENCY);
+      }
+      lines.push("--------------------------------");
+      lines.push("TOTAL: " + cartTotal().toFixed(2) + " " + CURRENCY);
+      lines.push("ETH (ERC20): " + ETH_ADDRESS);
+      return lines.join("\n");
+    }
+
+    function setOrderPreview(text){
+      document.getElementById("orderPreviewBox").style.display = "block";
+      document.getElementById("orderPreviewText").textContent = text;
+    }
+
+    function setEmailLink(orderText){
+      var subject = encodeURIComponent("DEX treading - New Order");
+      var body = encodeURIComponent(orderText);
+      var href = "mailto:" + encodeURIComponent(MERCHANT_EMAIL) + "?subject=" + subject + "&body=" + body;
+      document.getElementById("emailOrderBtn").setAttribute("href", href);
+    }
+
+    function copyText(text){
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        return navigator.clipboard.writeText(text);
+      }
+      // fallback
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try{ document.execCommand("copy"); }catch(e){}
+      document.body.removeChild(ta);
+      return Promise.resolve();
+    }
+
+    function escapeHtml(s){
+      return String(s)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+    }
+
+    // ====== Events ======
+    function bindEvents(){
+      overlay = document.getElementById("overlay");
+      drawer = document.getElementById("drawer");
+
+      document.getElementById("openCartBtn").addEventListener("click", openCart);
+      document.getElementById("closeCartBtn").addEventListener("click", closeCart);
+      overlay.addEventListener("click", closeCart);
+
+      document.getElementById("clearCartBtn").addEventListener("click", function(){
+        clearCart();
+      });
+      document.getElementById("clearCartBtnCheckout").addEventListener("click", function(){
+        clearCart();
+      });
+
+      document.getElementById("langBtn").addEventListener("click", function(){
+        setLang(getLang()==="ar" ? "en" : "ar");
+      });
+
+      function copyEth(){
+        copyText(ETH_ADDRESS).then(function(){
+          // tiny feedback
+          var btns = [document.getElementById("copyEthBtn"), document.getElementById("copyEthTopBtn")];
+          for(var i=0;i<btns.length;i++){
+            if(!btns[i]) continue;
+            var old = btns[i].textContent;
+            btns[i].textContent = "✓";
+            (function(b, t0){ setTimeout(function(){ b.textContent = t0; }, 900); })(btns[i], old);
+          }
+        });
+      }
+      document.getElementById("copyEthBtn").addEventListener("click", copyEth);
+      document.getElementById("copyEthTopBtn").addEventListener("click", copyEth);
+
+      document.getElementById("orderForm").addEventListener("submit", function(e){
+        e.preventDefault();
+        var items = cartDetailed();
+        if(items.length === 0){
+          alert(t("empty_cart"));
+          return;
+        }
+
+        var form = {
+          fullName: document.getElementById("fullName").value.trim(),
+
+Fares, [07/01/2026 4:55 pm]
+phone: document.getElementById("phone").value.trim(),
+          email: document.getElementById("email").value.trim(),
+          country: document.getElementById("country").value.trim(),
+          payMethod: document.getElementById("payMethod").value,
+          txid: document.getElementById("txid").value.trim(),
+          note: document.getElementById("note").value.trim()
+        };
+
+        if(!form.fullName  !form.phone  !form.email  !form.country  !form.txid){
+          alert("Please fill all required fields.");
+          return;
+        }
+
+        var orderText = buildOrderText(form);
+        setOrderPreview(orderText);
+        setEmailLink(orderText);
+
+        // Save last order locally (optional)
+        localStorage.setItem("dex_last_order_text", orderText);
+      });
+
+      document.getElementById("copyOrderBtn").addEventListener("click", function(){
+        var txt = document.getElementById("orderPreviewText").textContent  localStorage.getItem("dex_last_order_text")  "";
+        if(!txt){
+          alert("Generate the order first.");
+          return;
+        }
+        copyText(txt).then(function(){
+          var btn = document.getElementById("copyOrderBtn");
+          var old = btn.textContent;
+          btn.textContent = "✓";
+          setTimeout(function(){ btn.textContent = old; }, 900);
+        });
+      });
+    }
+
+    // ====== Init ======
+    function init(){
+      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("year2").textContent = new Date().getFullYear();
+      document.getElementById("year3").textContent = new Date().getFullYear();
+
+      applyLang();
+      bindEvents();
+      setActivePage(); // sets page + render
+      renderAll();
+    }
+
+    init();
+  </script>
+</body>
+</html>
