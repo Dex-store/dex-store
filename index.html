@@ -7,772 +7,1648 @@
   <meta name="description" content="DEX treading - متجر خدمات ومنتجات رقمية للتداول: كورسات، شحن USDT، حسابات Exness، بوتات تداول آلي."/>
   <style>
     :root{
-      --bg:#070A12; --card:rgba(255,255,255,.06); --border:rgba(255,255,255,.12);
-      --text:#fff; --muted:#b8c2e6; --brand:#1e5bff; --brand2:#4f7cff;
-      --ok:#27d17c; --danger:#ff5b5b; --shadow:0 12px 28px rgba(0,0,0,.35);
+      --bg:#070A12; --bg2:#05060B;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.04);
+      --border:rgba(255,255,255,.12);
+      --text:#fff; --muted:#b8c2e6;
+      --brand:#1e5bff; --brand2:#4f7cff;
+      --ok:#27d17c; --danger:#ff5b5b; --warn:#ffb020;
+      --shadow: 0 14px 34px rgba(0,0,0,.45);
       --r:18px; --r2:22px;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:radial-gradient(1200px 500px at 20% -10%, rgba(30,91,255,.25), transparent 60%),
-                 radial-gradient(1200px 500px at 80% -10%, rgba(79,124,255,.18), transparent 60%),
-                 var(--bg);
-      color:var(--text)}
+    html,body{
+      margin:0;padding:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 520px at 18% -12%, rgba(30,91,255,.30), transparent 60%),
+        radial-gradient(1200px 520px at 82% -12%, rgba(79,124,255,.22), transparent 60%),
+        radial-gradient(900px 420px at 50% 110%, rgba(39,209,124,.10), transparent 55%),
+        var(--bg);
+    }
     a{color:inherit;text-decoration:none}
     button{font-family:inherit}
     .container{max-width:1160px;margin:0 auto;padding:18px}
-    .topbar{position:sticky;top:0;z-index:50;background:rgba(5,6,11,.72);
-      backdrop-filter: blur(10px);border-bottom:1px solid var(--border);}
+
+    /* Topbar */
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      background:rgba(5,6,11,.72);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
     .topbar .container{display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:12px;min-width:180px}
-    .logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand2));
-      box-shadow:0 10px 18px rgba(30,91,255,.25);display:grid;place-items:center;font-weight:900}
-    .tagline{font-size:12px;color:var(--muted);line-height:1.2}
+    .logo{
+      width:46px;height:46px;border-radius:16px;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      box-shadow: 0 14px 22px rgba(30,91,255,.28);
+      display:grid;place-items:center;
+      font-weight:1000;letter-spacing:.5px;
+    }
+    .brandName{font-weight:1000;font-size:14px}
+    .tagline{font-size:12px;color:var(--muted);line-height:1.2;margin-top:2px}
+
     .nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:10px 14px;border-radius:14px;
-      border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);cursor:pointer;user-select:none;white-space:nowrap}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:10px 14px;border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      cursor:pointer;user-select:none;white-space:nowrap;
+      transition:transform .08s ease, opacity .18s ease, background .18s ease;
+    }
+    .btn:hover{opacity:.96}
+    .btn:active{transform:translateY(1px)}
     .btn.primary{border:none;background:linear-gradient(135deg,var(--brand),#2d5bff)}
     .btn.ok{border:none;background:linear-gradient(135deg,#2ad67a,#0aa36b)}
+    .btn.ghost{background:transparent}
     .btn.danger{border:1px solid rgba(255,91,91,.35);background:rgba(255,91,91,.12);color:#ffd6d6}
+
     .cartBtn{position:relative}
-    .bubble{position:absolute;top:-7px;right:-7px;width:18px;height:18px;border-radius:999px;background:var(--danger);
-      display:grid;place-items:center;font-size:11px;font-weight:900;border:2px solid rgba(5,6,11,.9)}
-    .hero{padding:24px 0 8px}
-    .heroGrid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}
+    .bubble{
+      position:absolute;top:-7px;right:-7px;width:18px;height:18px;border-radius:999px;
+      background:var(--danger);display:grid;place-items:center;
+      font-size:11px;font-weight:1000;border:2px solid rgba(5,6,11,.9)
+    }
+
+    /* Hero */
+    .hero{padding:20px 0 10px}
+    .heroGrid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;align-items:stretch}
     @media (max-width:920px){.heroGrid{grid-template-columns:1fr}}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
-      border:1px solid var(--border);border-radius:var(--r2);box-shadow:var(--shadow);padding:16px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid var(--border);
+      border-radius:var(--r2);
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
     .card.soft{box-shadow:none;background:rgba(255,255,255,.04)}
-    .muted{color:var(--muted)} .small{font-size:12px}
-    .h1{font-size:30px;line-height:1.1;margin:0 0 10px}
+    .muted{color:var(--muted)}
+    .small{font-size:12px}
+    .h1{font-size:32px;line-height:1.1;margin:0 0 10px}
     @media (max-width:520px){.h1{font-size:26px}}
-    .lead{margin:0 0 16px;color:var(--muted);line-height:1.6}
+    .lead{margin:0 0 16px;color:var(--muted);line-height:1.65}
     .ctaRow{display:flex;gap:10px;flex-wrap:wrap}
     .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
     @media (max-width:700px){.kpis{grid-template-columns:1fr}}
-    .kpi{padding:12px;border-radius:18px;border:1px solid var(--border);background:rgba(0,0,0,.12)}
+    .kpi{padding:12px;border-radius:18px;border:1px solid var(--border);background:rgba(0,0,0,.14)}
     .kpi strong{display:block;font-size:14px}
     .kpi span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+
+    .notice{
+      border:1px dashed rgba(255,255,255,.22);
+      background:rgba(255,255,255,.03);
+      border-radius:18px;
+      padding:12px;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:13px;
+    }
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;word-break:break-all}
+
+    /* Toolbar (filters/search) */
+    .toolbar{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+      margin:14px 0 10px;
+    }
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{
+      padding:8px 12px;border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.05);
+      color:var(--muted);
+      cursor:pointer;user-select:none;font-size:12px;font-weight:800;
+      transition:background .18s ease, transform .08s ease, opacity .18s ease;
+    }
+    .chip:hover{opacity:.96}
+    .chip:active{transform:translateY(1px)}
+    .chip.active{
+      color:#fff;
+      border-color:rgba(30,91,255,.5);
+      background:rgba(30,91,255,.18);
+    }
+    .searchWrap{display:flex;gap:8px;align-items:center;flex:1;min-width:min(460px, 100%)}
+    .search{
+      width:100%;
+      padding:10px 12px;border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
+      outline:none;
+    }
+
+    /* Section head */
     .sectionHead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:18px 0 10px;flex-wrap:wrap}
     .sectionHead h2{margin:0;font-size:18px}
+
+    /* Products */
     .gridProducts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
     @media (max-width:1100px){.gridProducts{grid-template-columns:repeat(3,1fr)}}
     @media (max-width:820px){.gridProducts{grid-template-columns:repeat(2,1fr)}}
     @media (max-width:520px){.gridProducts{grid-template-columns:1fr}}
-    .product{border:1px solid var(--border);border-radius:var(--r2);background:rgba(255,255,255,.04);overflow:hidden;display:flex;flex-direction:column;min-height:290px}
-    .pMedia{height:140px;background:radial-gradient(500px 200px at 20% 0%, rgba(30,91,255,.35), transparent 60%),
-      radial-gradient(500px 200px at 80% 0%, rgba(79,124,255,.28), transparent 60%), rgba(0,0,0,.18);
-      border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative}
+    .product{
+      border:1px solid var(--border);
+      border-radius:var(--r2);
+      background:rgba(255,255,255,.04);
+      overflow:hidden;
+      display:flex;flex-direction:column;
+      min-height: 300px;
+      transition:transform .12s ease, border-color .18s ease, background .18s ease;
+    }
+    .product:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.05)}
+    .pMedia{
+      height:148px;
+      background:
+        radial-gradient(520px 220px at 20% 0%, rgba(30,91,255,.38), transparent 62%),
+        radial-gradient(520px 220px at 80% 0%, rgba(79,124,255,.26), transparent 62%),
+        rgba(0,0,0,.18);
+      border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+    }
     .pBadges{position:absolute;top:10px;left:10px;display:flex;gap:8px;flex-wrap:wrap}
-    .badge{font-size:11px;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,.25);border:1px solid var(--border);color:var(--muted)}
+    .badge{
+      font-size:11px;padding:6px 10px;border-radius:999px;
+      background:rgba(0,0,0,.25);
+      border:1px solid var(--border);
+      color:var(--muted);
+      white-space:nowrap;
+    }
     .pBody{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
-    .pTitle{font-weight:900;line-height:1.3}
-    .pDesc{color:var(--muted);font-size:12px;line-height:1.5;min-height:34px}
+    .pTitle{font-weight:1000;line-height:1.3}
+    .pDesc{color:var(--muted);font-size:12px;line-height:1.55;min-height:38px}
     .pFooter{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:auto}
-    .price{font-weight:900} .price span{font-weight:700;color:var(--muted);font-size:12px;margin-inline-start:6px}
-    .svg{width:82px;height:82px;opacity:.95;filter: drop-shadow(0 10px 14px rgba(0,0,0,.35));}
+    .price{font-weight:1000}
+    .price span{font-weight:700;color:var(--muted);font-size:12px;margin-inline-start:6px}
+
+    /* Drawer */
     .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;z-index:70}
     .overlay.show{display:block}
-    .drawer{position:fixed;top:0;bottom:0;right:0;width:min(420px,92vw);background:rgba(5,6,11,.92);
-      backdrop-filter:blur(12px);border-left:1px solid var(--border);box-shadow:-20px 0 40px rgba(0,0,0,.45);
-      transform:translateX(105%);transition:transform .22s ease;z-index:80;display:flex;flex-direction:column}
-    [dir="ltr"] .drawer{right:auto;left:0;border-left:none;border-right:1px solid var(--border);box-shadow:20px 0 40px rgba(0,0,0,.45);transform:translateX(-105%)}
+    .drawer{
+      position:fixed;top:0;bottom:0;right:0;width:min(430px, 92vw);
+      background:rgba(5,6,11,.92);
+      backdrop-filter: blur(12px);
+      border-left:1px solid var(--border);
+      box-shadow: -22px 0 44px rgba(0,0,0,.50);
+      transform:translateX(105%);
+      transition:transform .22s ease;
+      z-index:80;
+      display:flex;flex-direction:column;
+    }
+    [dir="ltr"] .drawer{right:auto;left:0;border-left:none;border-right:1px solid var(--border);box-shadow: 22px 0 44px rgba(0,0,0,.50);transform:translateX(-105%)}
     .drawer.show{transform:translateX(0)}
     .drawerHead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px;border-bottom:1px solid var(--border)}
     .drawerBody{padding:14px;overflow:auto;display:flex;flex-direction:column;gap:10px;flex:1}
     .drawerFoot{padding:14px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:10px}
     .line{height:1px;background:var(--border);margin:6px 0}
-    .cartItem{border:1px solid var(--border);border-radius:18px;background:rgba(255,255,255,.04);padding:10px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+    .cartItem{
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      padding:10px;
+      display:flex;gap:10px;align-items:center;justify-content:space-between;
+    }
     .ciLeft{display:flex;gap:10px;align-items:center}
-    .ciIcon{width:42px;height:42px;border-radius:14px;background:rgba(30,91,255,.18);border:1px solid var(--border);display:grid;place-items:center}
-    .ciName{font-weight:900;font-size:13px;line-height:1.2}
+    .ciIcon{
+      width:42px;height:42px;border-radius:14px;
+      background:rgba(30,91,255,.18);
+      border:1px solid var(--border);
+      display:grid;place-items:center;
+      flex:0 0 auto;
+      font-weight:1000;
+    }
+    .ciName{font-weight:1000;font-size:13px;line-height:1.2}
     .ciMeta{font-size:12px;color:var(--muted);margin-top:4px}
     .ciRight{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-    .qty{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:999px;padding:6px 8px;background:rgba(0,0,0,.15)}
-    .qty button{width:26px;height:26px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:var(--text);cursor:pointer}
-    .qty span{min-width:16px;text-align:center;font-weight:900}
+    .qty{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:6px 8px;
+      background:rgba(0,0,0,.15);
+    }
+    .qty button{
+      width:26px;height:26px;border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:1000;
+    }
+    .qty span{min-width:16px;text-align:center;font-weight:1000}
+
+    /* Pages */
     .pages{padding:8px 0 26px}
-    .page{display:none} .page.active{display:block}
+    .page{display:none}
+    .page.active{display:block}
+
+    /* Forms & tables */
     .formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     @media (max-width:860px){.formGrid{grid-template-columns:1fr}}
     .field{display:flex;flex-direction:column;gap:6px}
     label{font-size:12px;color:var(--muted)}
-    input,select,textarea{width:100%;padding:12px;border-radius:14px;border:1px solid var(--border);background:rgba(0,0,0,.18);color:var(--text);outline:none}
+    input,select,textarea{
+      width:100%;padding:12px 12px;border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
+      outline:none;
+    }
     textarea{min-height:110px;resize:vertical}
-    table{width:100%;border-collapse:collapse} th,td{padding:10px;border-bottom:1px solid var(--border);text-align:start}
-    th{font-size:12px;color:var(--muted);font-weight:800}
-    .notice{border:1px dashed rgba(255,255,255,.22);background:rgba(255,255,255,.03);border-radius:18px;padding:12px;color:var(--muted);line-height:1.6;font-size:13px}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;word-break:break-all}
-    .footer{margin-top:18px;padding:18px 0;color:var(--muted);text-align:center;border-top:1px solid var(--border);font-size:12px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px;border-bottom:1px solid var(--border);text-align:start}
+    th{font-size:12px;color:var(--muted);font-weight:900}
+
+    .footer{
+      margin-top:18px;
+      padding:18px 0;
+      color:var(--muted);
+      text-align:center;
+      border-top:1px solid var(--border);
+      font-size:12px;
+    }
+
+    /* SVG Icons */
+    .svg{width:86px;height:86px;opacity:.95;filter: drop-shadow(0 12px 16px rgba(0,0,0,.38));}
+
+    /* Floating WhatsApp */
+    .waFloat{
+      position:fixed;z-index:90;
+      right:16px;bottom:16px;
+      display:flex;align-items:center;gap:10px;
+      padding:12px 14px;border-radius:999px;
+      border:1px solid rgba(39,209,124,.35);
+      background:rgba(11, 35, 22, .82);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 16px 36px rgba(0,0,0,.50);
+      cursor:pointer;user-select:none;
+    }
+    [dir="ltr"] .waFloat{right:auto;left:16px}
+    .waDot{
+      width:12px;height:12px;border-radius:999px;background:var(--ok);
+      box-shadow:0 0 0 6px rgba(39,209,124,.14);
+    }
+    .waText{font-weight:1000}
+    .waSub{font-size:12px;color:rgba(255,255,255,.75);margin-top:2px}
+    .waCol{display:flex;flex-direction:column;line-height:1.05}
   </style>
 </head>
 
 <body>
-<header class="topbar">
-  <div class="container">
-    <div class="brand">
-      <div class="logo">DX</div>
-      <div>
-        <div style="font-weight:900;font-size:14px">DEX treading</div>
-        <div class="tagline" id="tagline">معًا لنشر المعرفة المالية في دول أفريقيا و شمال أفريقيا</div>
-      </div>
-    </div>
 
-    <nav class="nav">
-      <a class="btn" href="#home" id="navHome">الرئيسية</a>
-      <a class="btn" href="#services" id="navServices">الخدمات والأسعار</a>
-      <a class="btn" href="#checkout" id="navCheckout">الدفع والشراء</a>
-
-      <button class="btn cartBtn" id="openCartBtn" type="button">
-        <span id="cartBtnText">السلة</span>
-        <span class="bubble" id="cartCountBubble" style="display:none">0</span>
-      </button>
-
-      <button class="btn primary" id="langBtn" type="button">EN</button>
-    </nav>
-  </div>
-</header>
-
-<div class="overlay" id="overlay"></div>
-<aside class="drawer" id="drawer">
-  <div class="drawerHead">
-    <div style="font-weight:900" id="cartTitle">السلة</div>
-    <button class="btn" id="closeCartBtn" type="button">✕</button>
-  </div>
-  <div class="drawerBody" id="cartItems"></div>
-  <div class="drawerFoot">
-    <div class="notice" id="cartEmptyNotice" style="display:none">السلة فارغة.</div>
-    <div class="line"></div>
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
-      <div style="font-weight:900" id="subtotalLabel">الإجمالي</div>
-      <div style="font-weight:900" id="subtotalValue">0.00 USD</div>
-    </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <button class="btn danger" id="clearCartBtn" type="button">تفريغ السلة</button>
-      <a class="btn ok" href="#checkout" id="goCheckoutFromCart">الذهاب للدفع</a>
-    </div>
-  </div>
-</aside>
-
-<main class="pages">
-  <section class="page active" id="home">
-    <div class="container hero">
-      <div class="heroGrid">
-        <div class="card">
-          <h1 class="h1" id="heroTitle">متجر DEX treading</h1>
-          <p class="lead" id="heroDesc">اختر المنتج، أضفه للسلة، ثم أكمل الدفع.</p>
-          <div class="ctaRow">
-            <a class="btn primary" href="#products" id="heroShopBtn">تصفح المنتجات</a>
-            <a class="btn ok" href="#checkout" id="heroCheckoutBtn">إتمام الشراء</a>
-            <a class="btn" href="#services" id="heroServicesBtn">طرق الدفع والأسعار</a>
-          </div>
-
-          <div class="kpis">
-            <div class="kpi"><strong id="kpi1Title">AR / EN</strong><span id="kpi1Desc">تبديل اللغة بضغطة</span></div>
-            <div class="kpi"><strong id="kpi2Title">دفع مرن</strong><span id="kpi2Desc">بنك / فوري / بايننس / ERC20</span></div>
-            <div class="kpi"><strong id="kpi3Title">طلب جاهز</strong><span id="kpi3Desc">توليد نص الطلب + نسخة وإرسال</span></div>
-          </div>
-        </div>
-
-        <div class="card soft">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
-            <div>
-              <div style="font-weight:900;font-size:14px" id="quickTitle">معلومات سريعة</div>
-              <div class="muted small" id="quickDesc">عنوان ERC20 جاهز للنسخ</div>
-            </div>
-            <button class="btn" id="copyEthTopBtn" type="button">نسخ عنوان ETH</button>
-          </div>
-
-          <div class="notice" style="margin-top:12px">
-            <div style="font-weight:900;margin-bottom:6px" id="ethBoxTitle">عنوان الدفع على شبكة Ethereum (ERC20)</div>
-            <div class="mono" id="ethAddress"></div>
-            <div class="muted small" style="margin-top:6px" id="ethHint">أرسل USDT (ERC20) أو ETH إلى هذا العنوان فقط.</div>
-          </div>
-
-          <div class="notice" style="margin-top:12px">
-            <div style="font-weight:900;margin-bottom:6px" id="priceRuleTitle">قواعد الأسعار</div>
-            <div class="muted" id="priceRuleBody">كل المنتجات والخدمات = 10$ — البوتات = 30$ — بوت الذهب = 50$</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sectionHead" id="products" style="scroll-margin-top:90px">
-        <h2 id="productsTitle">المنتجات والخدمات</h2>
-        <div class="muted" id="productsSubtitle">اضغط (أضف للسلة) ثم اذهب للدفع.</div>
-      </div>
-
-      <div class="gridProducts" id="productsGrid"></div>
-
-      <div class="footer">
-        <div>© <span id="year"></span> DEX treading</div>
-        <div id="footerNote">يمكن ربط المتجر لاحقًا بواتساب/Google Sheets بسهولة.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="page" id="services">
+  <!-- TOPBAR -->
+  <header class="topbar">
     <div class="container">
-      <div class="sectionHead">
-        <h2 id="servicesTitle">الخدمات والأسعار</h2>
-        <div class="muted" id="servicesSubtitle">كل الأسعار بالدولار (USD) ويمكن الدفع بالطرق التالية.</div>
+      <div class="brand">
+        <div class="logo">DX</div>
+        <div>
+          <div class="brandName">DEX treading</div>
+          <div class="tagline" id="tagline"></div>
+        </div>
       </div>
 
-      <div class="card">
-        <div class="formGrid">
-          <div>
-            <h3 style="margin:0 0 10px" id="pricingTitle">جدول الأسعار</h3>
-            <div class="muted small" id="pricingHint">الأسعار ثابتة حسب القواعد المتفق عليها.</div>
-            <div style="height:10px"></div>
-            <div style="overflow:auto">
-              <table>
-                <thead>
-                  <tr><th id="thItem">المنتج/الخدمة</th><th id="thCat">التصنيف</th><th id="thPrice">السعر</th></tr>
-                </thead>
-                <tbody id="pricingTable"></tbody>
-              </table>
+      <nav class="nav">
+        <a class="btn ghost" href="#home" id="navHome"></a>
+        <a class="btn ghost" href="#services" id="navServices"></a>
+        <a class="btn ghost" href="#checkout" id="navCheckout"></a>
+
+        <button class="btn cartBtn" id="openCartBtn" type="button">
+          <span id="cartBtnText"></span>
+          <span class="bubble" id="cartCountBubble" style="display:none">0</span>
+        </button>
+
+        <button class="btn primary" id="langBtn" type="button">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CART DRAWER -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" aria-label="Cart drawer">
+    <div class="drawerHead">
+      <div style="font-weight:1000" id="cartTitle"></div>
+      <button class="btn" id="closeCartBtn" type="button">✕</button>
+    </div>
+    <div class="drawerBody" id="cartItems"></div>
+    <div class="drawerFoot">
+      <div class="notice" id="cartEmptyNotice" style="display:none"></div>
+      <div class="line"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <div style="font-weight:1000" id="subtotalLabel"></div>
+        <div style="font-weight:1000" id="subtotalValue"></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn danger" id="clearCartBtn" type="button"></button>
+        <a class="btn ok" href="#checkout" id="goCheckoutFromCart"></a>
+      </div>
+      <div class="notice small" id="waHint" style="margin-top:8px"></div>
+    </div>
+  </aside>
+
+  <!-- WhatsApp floating button -->
+  <div class="waFloat" id="waFloatBtn" title="WhatsApp">
+    <span class="waDot"></span>
+    <div class="waCol">
+      <div class="waText" id="waFloatText"></div>
+      <div class="waSub" id="waFloatSub"></div>
+    </div>
+  </div>
+
+  <main class="pages">
+
+    <!-- HOME -->
+    <section class="page active" id="home">
+      <div class="container hero">
+        <div class="heroGrid">
+
+          <div class="card">
+            <h1 class="h1" id="heroTitle"></h1>
+            <p class="lead" id="heroDesc"></p>
+            <div class="ctaRow">
+              <a class="btn primary" href="#products" id="heroShopBtn"></a>
+              <a class="btn ok" href="#checkout" id="heroCheckoutBtn"></a>
+              <a class="btn" href="#services" id="heroServicesBtn"></a>
             </div>
-          </div>
 
-          <div>
-            <h3 style="margin:0 0 10px" id="payTitle">طرق الدفع</h3>
-
-            <div class="notice" style="margin-bottom:10px">
-              <div style="font-weight:900" id="pay1Title">بنك الخرطوم</div>
-              <div class="muted" id="pay1Val">رقم الحساب: 8108407</div>
-            </div>
-
-            <div class="notice" style="margin-bottom:10px">
-              <div style="font-weight:900" id="pay2Title">فوري سودان</div>
-              <div class="muted" id="pay2Val">رقم الحساب: 52000220</div>
-            </div>
-
-            <div class="notice" style="margin-bottom:10px">
-              <div style="font-weight:900" id="pay3Title">Binance Pay</div>
-              <div class="muted" id="pay3Val">المعرّف: 850037703</div>
-            </div>
-
-            <div class="notice">
-              <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
-                <div>
-                  <div style="font-weight:900" id="pay4Title">عملات رقمية (ERC20)</div>
-                  <div class="muted small" id="pay4Hint">انسخ العنوان أدناه</div>
-                </div>
-                <button class="btn" id="copyEthBtn" type="button">نسخ عنوان ETH</button>
+            <div class="kpis">
+              <div class="kpi">
+                <strong id="kpi1Title"></strong>
+                <span id="kpi1Desc"></span>
               </div>
-              <div style="height:8px"></div>
-              <div class="mono" id="ethAddress2"></div>
-            </div>
-
-            <div style="height:12px"></div>
-            <div class="notice" id="afterPayNote">بعد الدفع: اذهب لصفحة (الدفع والشراء) واكتب TxID/رقم العملية لتوليد نص الطلب.</div>
-
-            <div style="height:12px"></div>
-            <div style="display:flex;gap:10px;flex-wrap:wrap">
-              <a class="btn primary" href="#home" id="backHomeBtn">رجوع للرئيسية</a>
-              <a class="btn ok" href="#checkout" id="goCheckoutBtn">إتمام الشراء</a>
+              <div class="kpi">
+                <strong id="kpi2Title"></strong>
+                <span id="kpi2Desc"></span>
+              </div>
+              <div class="kpi">
+                <strong id="kpi3Title"></strong>
+                <span id="kpi3Desc"></span>
+              </div>
             </div>
           </div>
+
+          <div class="card soft">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+              <div>
+                <div style="font-weight:1000;font-size:14px" id="quickTitle"></div>
+                <div class="muted small" id="quickDesc"></div>
+              </div>
+              <button class="btn" id="copyEthTopBtn" type="button"></button>
+            </div>
+            <div class="notice" style="margin-top:12px">
+              <div style="font-weight:1000;margin-bottom:6px" id="ethBoxTitle"></div>
+              <div class="mono" id="ethAddress"></div>
+              <div class="muted small" style="margin-top:6px" id="ethHint"></div>
+            </div>
+
+            <div class="notice" style="margin-top:12px">
+              <div style="font-weight:1000;margin-bottom:6px" id="priceRuleTitle"></div>
+              <div class="muted" id="priceRuleBody"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sectionHead" id="products" style="scroll-margin-top:90px">
+          <h2 id="productsTitle"></h2>
+          <div class="muted" id="productsSubtitle"></div>
+        </div>
+
+        <div class="toolbar">
+          <div class="chips" id="chips"></div>
+          <div class="searchWrap">
+            <input class="search" id="search" placeholder="..." />
+            <button class="btn" id="resetBtn" type="button">↺</button>
+          </div>
+        </div>
+
+        <div class="gridProducts" id="productsGrid"></div>
+
+        <div class="footer">
+          <div>© <span id="year"></span> DEX treading</div>
+          <div id="footerNote"></div>
         </div>
       </div>
+    </section>
 
-      <div class="footer">© <span id="year2"></span> DEX treading</div>
-    </div>
-  </section>
-
-  <section class="page" id="checkout">
-    <div class="container">
-      <div class="sectionHead">
-        <h2 id="checkoutTitle">إتمام الدفع والشراء</h2>
-        <div class="muted" id="checkoutSubtitle">املأ البيانات + TxID، ثم اضغط “توليد الطلب”.</div>
-      </div>
-
-      <div class="formGrid">
-        <div class="card">
-          <h3 style="margin:0 0 10px" id="customerTitle">بيانات العميل</h3>
-
-          <form id="orderForm">
-            <div class="formGrid">
-              <div class="field"><label id="fullNameLabel">الاسم الكامل</label><input id="fullName" required /></div>
-              <div class="field"><label id="phoneLabel">رقم الهاتف</label><input id="phone" required /></div>
-              <div class="field"><label id="emailLabel">البريد الإلكتروني</label><input id="email" type="email" required /></div>
-              <div class="field"><label id="countryLabel">الدولة/المدينة</label><input id="country" required /></div>
-            </div>
-
-            <div class="field" style="margin-top:10px">
-              <label id="payMethodLabel">طريقة الدفع</label>
-              <select id="payMethod" required>
-                <option value="bank_khartoum">Bank of Khartoum (8108407)</option>
-                <option value="foory">Foory Sudan (52000220)</option>
-                <option value="binance">Binance Pay (850037703)</option>
-                <option value="eth">Crypto (Ethereum ERC20)</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label id="txLabel">TxID / رقم العملية</label>
-              <input id="txid" required />
-              <div class="muted small" id="txHint">مثال: رقم التحويل البنكي أو معرف العملية أو TxID للعملات الرقمية.</div>
-            </div>
-
-            <div class="field"><label id="noteLabel">ملاحظة إضافية (اختياري)</label><textarea id="note"></textarea></div>
-
-            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-              <button class="btn ok" type="submit" id="generateBtn">توليد الطلب</button>
-              <button class="btn" type="button" id="copyOrderBtn">نسخ نص الطلب</button>
-              <a class="btn primary" id="emailOrderBtn" href="#" target="_blank" rel="noopener">إرسال عبر البريد</a>
-            </div>
-
-            <div style="height:10px"></div>
-            <div class="notice" id="checkoutHelp">بعد توليد الطلب: اضغط (نسخ) ثم أرسله لنا على واتساب/البريد.</div>
-          </form>
+    <!-- SERVICES -->
+    <section class="page" id="services">
+      <div class="container">
+        <div class="sectionHead">
+          <h2 id="servicesTitle"></h2>
+          <div class="muted" id="servicesSubtitle"></div>
         </div>
 
         <div class="card">
-          <h3 style="margin:0 0 10px" id="summaryTitle">ملخص الطلب</h3>
-
-          <div class="notice" id="emptyCartCheckout">السلة فارغة. أضف منتجات أولًا.</div>
-
-          <div id="summaryWrap" style="display:none">
-            <div style="overflow:auto">
-              <table>
-                <thead>
-                  <tr><th id="sumItem">الصنف</th><th id="sumQty">الكمية</th><th id="sumPrice">السعر</th><th id="sumTotal">الإجمالي</th></tr>
-                </thead>
-                <tbody id="summaryTable"></tbody>
-              </table>
+          <div class="formGrid">
+            <div>
+              <h3 style="margin:0 0 10px" id="pricingTitle"></h3>
+              <div class="muted small" id="pricingHint"></div>
+              <div style="height:10px"></div>
+              <div style="overflow:auto">
+                <table>
+                  <thead>
+                    <tr>
+                      <th id="thItem"></th>
+                      <th id="thCat"></th>
+                      <th id="thPrice"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="pricingTable"></tbody>
+                </table>
+              </div>
             </div>
 
-            <div style="height:10px"></div>
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
-              <div style="font-weight:900" id="totalLabel">المجموع</div>
-              <div style="font-weight:900" id="totalValue">0.00 USD</div>
-            </div>
+            <div>
+              <h3 style="margin:0 0 10px" id="payTitle"></h3>
 
-            <div style="height:12px"></div>
-            <div class="notice">
-              <div style="font-weight:900;margin-bottom:6px" id="merchantTitle">بيانات الاستلام</div>
-              <div class="muted small" id="merchantHint">إرسال الطلب إلى البريد التالي:</div>
-              <div style="height:8px"></div>
-              <div class="mono" id="merchantEmail"></div>
-            </div>
+              <div class="notice" style="margin-bottom:10px">
+                <div style="font-weight:1000" id="pay1Title"></div>
+                <div class="muted" id="pay1Val"></div>
+              </div>
 
-            <div style="height:12px"></div>
-            <div class="notice">
-              <div style="font-weight:900;margin-bottom:6px" id="ethPayTitle">عنوان الدفع (ERC20)</div>
-              <div class="mono" id="ethAddress3"></div>
-              <div class="muted small" style="margin-top:6px" id="ethPayHint">تأكد من اختيار شبكة Ethereum (ERC20).</div>
-            </div>
+              <div class="notice" style="margin-bottom:10px">
+                <div style="font-weight:1000" id="pay2Title"></div>
+                <div class="muted" id="pay2Val"></div>
+              </div>
 
-            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-              <button class="btn danger" type="button" id="clearCartBtnCheckout">تفريغ السلة</button>
-              <a class="btn" href="#home" id="backShopBtn">الرجوع للمنتجات</a>
-            </div>
-          </div>
+              <div class="notice" style="margin-bottom:10px">
+                <div style="font-weight:1000" id="pay3Title"></div>
+                <div class="muted" id="pay3Val"></div>
+              </div>
 
-          <div style="height:12px"></div>
-          <div class="notice" id="orderPreviewBox" style="display:none">
-            <div style="font-weight:900;margin-bottom:6px" id="orderPreviewTitle">نص الطلب الجاهز</div>
-            <div class="mono small" id="orderPreviewText"></div>
+              <div class="notice">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+                  <div>
+                    <div style="font-weight:1000" id="pay4Title"></div>
+                    <div class="muted small" id="pay4Hint"></div>
+                  </div>
+                  <button class="btn" id="copyEthBtn" type="button"></button>
+                </div>
+                <div style="height:8px"></div>
+                <div class="mono" id="ethAddress2"></div>
+              </div>
+
+              <div style="height:12px"></div>
+              <div class="notice" id="afterPayNote"></div>
+
+              <div style="height:12px"></div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <a class="btn primary" href="#home" id="backHomeBtn"></a>
+                <a class="btn ok" href="#checkout" id="goCheckoutBtn"></a>
+              </div>
+
+              <div style="height:12px"></div>
+              <div class="notice small" id="waServiceHint"></div>
+            </div>
           </div>
         </div>
+
+        <div class="footer">
+          <div>© <span id="year2"></span> DEX treading</div>
+        </div>
       </div>
+    </section>
 
-      <div class="footer">© <span id="year3"></span> DEX treading</div>
-    </div>
-  </section>
-</main>
+    <!-- CHECKOUT -->
+    <section class="page" id="checkout">
+      <div class="container">
+        <div class="sectionHead">
+          <h2 id="checkoutTitle"></h2>
+          <div class="muted" id="checkoutSubtitle"></div>
+        </div>
 
-<script>
-  // ====== CONFIG ======
-  var ETH_ADDRESS = "0xb56a89f790060cbb0f08d02234921e5fefff11a6";
-  var MERCHANT_EMAIL = "bfars725@gmail.com";
-  var CURRENCY = "USD";
+        <div class="formGrid">
+          <div class="card">
+            <h3 style="margin:0 0 10px" id="customerTitle"></h3>
 
-  // ====== SAFE HELPERS (prevents blank site) ======
-  function $(id){ return document.getElementById(id); }
-  function setText(id, val){ var el=$(id); if(el) el.textContent = val; }
-  function setHTML(id, val){ var el=$(id); if(el) el.innerHTML = val; }
-  function setAttr(id, name, val){ var el=$(id); if(el) el.setAttribute(name, val); }
+            <form id="orderForm">
+              <div class="formGrid">
+                <div class="field">
+                  <label id="fullNameLabel"></label>
+                  <input id="fullName" required />
+                </div>
+                <div class="field">
+                  <label id="phoneLabel"></label>
+                  <input id="phone" required />
+                </div>
+                <div class="field">
+                  <label id="emailLabel"></label>
+                  <input id="email" type="email" required />
+                </div>
+                <div class="field">
+                  <label id="countryLabel"></label>
+                  <input id="country" required />
+                </div>
+              </div>
 
-  function escapeHtml(s){
-    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
-      .replace(/"/g,"&quot;").replace(/'/g,"&#039;");
-  }
+              <div class="field" style="margin-top:10px">
+                <label id="payMethodLabel"></label>
+                <select id="payMethod" required>
+                  <option value="bank_khartoum">Bank of Khartoum (8108407)</option>
+                  <option value="foory">Foory Sudan (52000220)</option>
+                  <option value="binance">Binance Pay (850037703)</option>
+                  <option value="eth">Crypto (Ethereum ERC20)</option>
+                </select>
+              </div>
 
-  // ====== PRODUCTS ======
-  var PRODUCTS = [
-    { id:"c_classic", category:"Courses", tag:"Course", price:10.00, icon:"course",
-      name_ar:"كورس تعلم التداول من الصفر - الكورس الكلاسيكي", name_en:"Trading From Zero - Classic Course",
-      desc_ar:"محتوى منظم للمبتدئين + تطبيق عملي.", desc_en:"Structured beginner content + practical practice." },
-    { id:"c_ict", category:"Courses", tag:"Course", price:10.00, icon:"course",
-      name_ar:"كورس تعلم التداول من الصفر - كورس ICT", name_en:"Trading From Zero - ICT Course",
-      desc_ar:"استراتيجية ICT مع أمثلة وتطبيق.", desc_en:"ICT concepts with examples & execution." },
-    { id:"c_smc", category:"Courses", tag:"Course", price:10.00, icon:"course",
-      name_ar:"كورس تعلم التداول من الصفر - كورس SMC", name_en:"Trading From Zero - SMC Course",
-      desc_ar:"Smart Money Concepts بشكل مبسط.", desc_en:"Smart Money Concepts simplified." },
-    { id:"c_sk", category:"Courses", tag:"Course", price:10.00, icon:"course",
-      name_ar:"كورس تعلم التداول من الصفر - كورس SK", name_en:"Trading From Zero - SK Course",
-      desc_ar:"منهج واضح + أمثلة جاهزة.", desc_en:"Clear framework + ready examples." },
-    { id:"usdt", category:"USDT", tag:"Service", price:10.00, icon:"usdt",
-      name_ar:"شحن USDT", name_en:"USDT Top-up",
-      desc_ar:"شحن سريع وآمن حسب التعليمات.", desc_en:"Fast & secure top-up as instructed." },
-    { id:"ex_create", category:"Exness", tag:"Service", price:10.00, icon:"ex",
-      name_ar:"حسابات اكسنس - إنشاء حسابات Exness", name_en:"Exness - Account Creation",
-      desc_ar:"إنشاء حساب مع إعدادات صحيحة.", desc_en:"Create account with correct setup." },
-    { id:"ex_proof", category:"Exness", tag:"Service", price:10.00, icon:"proof",
-      name_ar:"حسابات اكسنس - توثيق السكن للحسابات الجاهزة", name_en:"Exness - Proof of Residence (Ready Accounts)",
-      desc_ar:"مساعدة في توثيق السكن للحساب.", desc_en:"Help with proof of residence verification." },
-    { id:"bot_gold", category:"Bots", tag:"Bot", price:50.00, icon:"gold",
-      name_ar:"بوتات التداول الآلي - بوت تداول الذهب", name_en:"Auto Trading Bots - Gold Bot",
-      desc_ar:"إعدادات محسّنة لتداول الذهب.", desc_en:"Optimized settings for Gold trading." },
-    { id:"bot_fx", category:"Bots", tag:"Bot", price:30.00, icon:"fx",
-      name_ar:"بوتات التداول الآلي - بوت تداول الأزواج", name_en:"Auto Trading Bots - FX Pairs Bot",
-      desc_ar:"تداول أزواج الفوركس آليًا.", desc_en:"Automate FX pairs trading." },
-    { id:"bot_stk", category:"Bots", tag:"Bot", price:30.00, icon:"stocks",
-      name_ar:"بوتات التداول الآلي - بوت تداول الأسهم والمؤشرات", name_en:"Auto Trading Bots - Stocks & Indices Bot",
-      desc_ar:"بوت للأسهم والمؤشرات بإعدادات واضحة.", desc_en:"Stocks & indices bot with clear presets." },
-    { id:"bot_crypto", category:"Bots", tag:"Bot", price:30.00, icon:"crypto",
-      name_ar:"بوتات التداول الآلي - بوت تداول العملات الرقمية", name_en:"Auto Trading Bots - Crypto Bot",
-      desc_ar:"بوت للعملات الرقمية مع إدارة مخاطر.", desc_en:"Crypto bot with risk management." }
-  ];
+              <div class="field">
+                <label id="txLabel"></label>
+                <input id="txid" required />
+                <div class="muted small" id="txHint"></div>
+              </div>
 
-  // ====== i18n ======
-  var I18N = {
-    ar:{
-      tagline:"معًا لنشر المعرفة المالية في دول أفريقيا و شمال أفريقيا",
-      navHome:"الرئيسية", navServices:"الخدمات والأسعار", navCheckout:"الدفع والشراء",
-      cart:"السلة", emptyCart:"السلة فارغة. أضف منتجات أولًا.",
-      add:"أضف للسلة", subtotal:"الإجمالي", clear:"تفريغ السلة", goCheckout:"الذهاب للدفع",
-      email:"bfars725@gmail.com"
-    },
-    en:{
-      tagline:"Together to spread financial knowledge in Africa & North Africa",
-      navHome:"Home", navServices:"Services & Pricing", navCheckout:"Checkout",
-      cart:"Cart", emptyCart:"Your cart is empty. Add items first.",
-      add:"Add to cart", subtotal:"Total", clear:"Clear cart", goCheckout:"Go to checkout",
-      email:"bfars725@gmail.com"
-    }
-  };
+              <div class="field">
+                <label id="noteLabel"></label>
+                <textarea id="note"></textarea>
+              </div>
 
-  // ====== STATE ======
-  var CART_KEY="dex_cart_v4", LANG_KEY="dex_lang_v4";
-  function getLang(){ return localStorage.getItem(LANG_KEY) || "ar"; }
-  function setLang(l){ localStorage.setItem(LANG_KEY,l); applyLang(); renderAll(); }
-  function getCart(){ try{return JSON.parse(localStorage.getItem(CART_KEY))||[];}catch(e){return[];} }
-  function saveCart(c){ localStorage.setItem(CART_KEY, JSON.stringify(c)); }
-  function findProduct(id){ for(var i=0;i<PRODUCTS.length;i++) if(PRODUCTS[i].id===id) return PRODUCTS[i]; return null; }
-  function cartDetailed(){
-    var cart=getCart(), out=[];
-    for(var i=0;i<cart.length;i++){ var p=findProduct(cart[i].id); if(p) out.push({p:p, qty:cart[i].qty}); }
-    return out;
-  }
-  function cartCount(){ var cart=getCart(), n=0; for(var i=0;i<cart.length;i++) n+=cart[i].qty; return n; }
-  function cartTotal(){ var items=cartDetailed(), s=0; for(var i=0;i<items.length;i++) s += items[i].p.price*items[i].qty; return s; }
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+                <button class="btn ok" type="submit" id="generateBtn"></button>
+                <button class="btn" type="button" id="copyOrderBtn"></button>
+                <a class="btn primary" id="emailOrderBtn" href="#" target="_blank" rel="noopener"></a>
+                <button class="btn" type="button" id="waOrderBtn"></button>
+              </div>
 
-  function addToCart(id){
-    var cart=getCart(), found=false;
-    for(var i=0;i<cart.length;i++){ if(cart[i].id===id){ cart[i].qty++; found=true; break; } }
-    if(!found) cart.push({id:id, qty:1});
-    saveCart(cart); renderAll(); openCart();
-  }
-  function setQty(id, qty){
-    var cart=getCart(), next=[];
-    for(var i=0;i<cart.length;i++){
-      if(cart[i].id===id){ next.push({id:id, qty: Math.max(1, qty)}); }
-      else next.push(cart[i]);
-    }
-    saveCart(next); renderAll();
-  }
-  function removeFromCart(id){
-    var cart=getCart(), next=[];
-    for(var i=0;i<cart.length;i++) if(cart[i].id!==id) next.push(cart[i]);
-    saveCart(next); renderAll();
-  }
-  function clearCart(){ saveCart([]); renderAll(); }
+              <div style="height:10px"></div>
+              <div class="notice" id="checkoutHelp"></div>
+            </form>
+          </div>
 
-  // ====== ROUTER ======
-  function setActivePage(){
-    var hash=(location.hash||"#home").replace("#","");
-    var pages=document.querySelectorAll(".page");
-    for(var i=0;i<pages.length;i++) pages[i].classList.remove("active");
-    var page=$(hash) || $("home");
-    if(page) page.classList.add("active");
-    window.scrollTo({top:0, behavior:"auto"});
-    renderAll();
-  }
-  window.addEventListener("hashchange", setActivePage);
+          <div class="card">
+            <h3 style="margin:0 0 10px" id="summaryTitle"></h3>
 
-  // ====== DRAWER ======
-  function openCart(){ $("overlay").classList.add("show"); $("drawer").classList.add("show"); }
-  function closeCart(){ $("overlay").classList.remove("show"); $("drawer").classList.remove("show"); }
+            <div class="notice" id="emptyCartCheckout"></div>
 
-  // ====== SVG ICONS ======
-  function iconSVG(type){
-    var stroke="rgba(255,255,255,.85)";
-    function base(content){
-      return '<svg class="svg" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">'+
-        '<defs><linearGradient id="g1" x1="12" y1="10" x2="84" y2="86"><stop stop-color="rgba(30,91,255,.20)"/><stop offset="1" stop-color="rgba(79,124,255,.18)"/></linearGradient></defs>'+
-        '<rect x="10" y="10" width="76" height="76" rx="22" fill="url(#g1)" stroke="rgba(255,255,255,.12)"/>'+
-        content+'</svg>';
-    }
-    if(type==="usdt") return base('<circle cx="48" cy="48" r="18" stroke="'+stroke+'" stroke-width="2"/><path d="M38 41h20M40 48h16M38 55h20" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/><path d="M48 30v36" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>');
-    if(type==="gold") return base('<path d="M28 54l10-20h20l10 20-10 10H38L28 54z" stroke="'+stroke+'" stroke-width="2" fill="rgba(255,176,32,.14)"/><path d="M38 34l10 20 10-20" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>');
-    if(type==="crypto") return base('<path d="M48 28l14 10v20L48 68 34 58V38l14-10z" stroke="'+stroke+'" stroke-width="2"/><path d="M48 34v28" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>');
-    if(type==="fx") return base('<path d="M28 60c10-18 18-18 28 0" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/><path d="M40 36h28" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>');
-    if(type==="stocks") return base('<path d="M30 62V46m12 16V38m12 24V44m12 18V34" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/><path d="M28 66h40" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>');
-    if(type==="ex") return base('<path d="M30 58V38h10l8 10 8-10h10v20H56l-8-10-8 10H30z" stroke="'+stroke+'" stroke-width="2" stroke-linejoin="round"/>');
-    if(type==="proof") return base('<path d="M34 30h28v36H34V30z" stroke="'+stroke+'" stroke-width="2" stroke-linejoin="round"/><path d="M40 40h16M40 48h16M40 56h12" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>');
-    return base('<path d="M30 40l18-8 18 8-18 8-18-8z" stroke="'+stroke+'" stroke-width="2"/><path d="M30 40v16l18 8 18-8V40" stroke="'+stroke+'" stroke-width="2"/>');
-  }
+            <div id="summaryWrap" style="display:none">
+              <div style="overflow:auto">
+                <table>
+                  <thead>
+                    <tr>
+                      <th id="sumItem"></th>
+                      <th id="sumQty"></th>
+                      <th id="sumPrice"></th>
+                      <th id="sumTotal"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="summaryTable"></tbody>
+                </table>
+              </div>
 
-  // ====== RENDER ======
-  function applyLang(){
-    var lang=getLang();
-    document.documentElement.lang=lang;
-    document.documentElement.dir=(lang==="ar")?"rtl":"ltr";
-    setText("tagline", I18N[lang].tagline);
-    setText("navHome", I18N[lang].navHome);
-    setText("navServices", I18N[lang].navServices);
-    setText("navCheckout", I18N[lang].navCheckout);
-    setText("cartBtnText", I18N[lang].cart);
-    setText("cartTitle", I18N[lang].cart);
-    setText("cartEmptyNotice", I18N[lang].emptyCart);
-    setText("subtotalLabel", I18N[lang].subtotal);
-    setText("clearCartBtn", I18N[lang].clear);
-    setText("goCheckoutFromCart", I18N[lang].goCheckout);
-  }
+              <div style="height:10px"></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+                <div style="font-weight:1000" id="totalLabel"></div>
+                <div style="font-weight:1000" id="totalValue"></div>
+              </div>
 
-  function renderProducts(){
-    var lang=getLang();
-    var grid=$("productsGrid");
-    if(!grid) return;
+              <div style="height:12px"></div>
+              <div class="notice">
+                <div style="font-weight:1000;margin-bottom:6px" id="merchantTitle"></div>
+                <div class="muted small" id="merchantHint"></div>
+                <div style="height:8px"></div>
+                <div class="mono" id="merchantEmail"></div>
+              </div>
 
-    var html="";
-    for(var i=0;i<PRODUCTS.length;i++){
-      var p=PRODUCTS[i];
-      var title=(lang==="ar")?p.name_ar:p.name_en;
-      var desc=(lang==="ar")?p.desc_ar:p.desc_en;
+              <div style="height:12px"></div>
+              <div class="notice">
+                <div style="font-weight:1000;margin-bottom:6px" id="ethPayTitle"></div>
+                <div class="mono" id="ethAddress3"></div>
+                <div class="muted small" style="margin-top:6px" id="ethPayHint"></div>
+              </div>
 
-      html += '<div class="product">'+
-        '<div class="pMedia"><div class="pBadges">'+
-          '<span class="badge">'+p.tag+'</span>'+
-          '<span class="badge">'+p.price.toFixed(2)+' '+CURRENCY+'</span>'+
-        '</div>'+iconSVG(p.icon)+'</div>'+
-        '<div class="pBody">'+
-          '<div class="pTitle">'+escapeHtml(title)+'</div>'+
-          '<div class="pDesc">'+escapeHtml(desc)+'</div>'+
-          '<div class="pFooter">'+
-            '<div class="price">'+p.price.toFixed(2)+' '+CURRENCY+'</div>'+
-            '<button class="btn primary" type="button" data-add="'+p.id+'">'+(I18N[lang].add)+'</button>'+
-          '</div></div></div>';
-    }
-    grid.innerHTML = html;
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+                <button class="btn danger" type="button" id="clearCartBtnCheckout"></button>
+                <a class="btn" href="#home" id="backShopBtn"></a>
+              </div>
+            </div>
 
-    var btns = grid.querySelectorAll("[data-add]");
-    for(var j=0;j<btns.length;j++){
-      (function(b){ b.addEventListener("click", function(){ addToCart(b.getAttribute("data-add")); }); })(btns[j]);
-    }
-  }
+            <div style="height:12px"></div>
+            <div class="notice" id="orderPreviewBox" style="display:none">
+              <div style="font-weight:1000;margin-bottom:6px" id="orderPreviewTitle"></div>
+              <div class="mono small" id="orderPreviewText"></div>
+            </div>
 
-  function renderPricingTable(){
-    var tbody=$("pricingTable"); if(!tbody) return;
-    var lang=getLang();
-    var rows="";
-    for(var i=0;i<PRODUCTS.length;i++){
-      var p=PRODUCTS[i];
-      rows += "<tr><td>"+escapeHtml((lang==="ar")?p.name_ar:p.name_en)+"</td><td>"+escapeHtml(p.category)+"</td><td>"+p.price.toFixed(2)+" "+CURRENCY+"</td></tr>";
-    }
-    tbody.innerHTML = rows;
-  }
+          </div>
+        </div>
 
-  function renderCart(){
-    setText("ethAddress", ETH_ADDRESS);
-    setText("ethAddress2", ETH_ADDRESS);
-    setText("ethAddress3", ETH_ADDRESS);
+        <div class="footer">
+          <div>© <span id="year3"></span> DEX treading</div>
+        </div>
+      </div>
+    </section>
 
-    var items=cartDetailed();
-    var box=$("cartItems"); if(!box) return;
-    var empty=$("cartEmptyNotice");
+  </main>
 
-    if(items.length===0){
-      if(empty) empty.style.display="block";
-      box.innerHTML="";
-    } else {
-      if(empty) empty.style.display="none";
-      var html="";
-      for(var i=0;i<items.length;i++){
-        var it=items[i], p=it.p;
-        var name=(getLang()==="ar")?p.name_ar:p.name_en;
-        html += '<div class="cartItem">'+
-          '<div class="ciLeft"><div class="ciIcon">🛒</div><div><div class="ciName">'+escapeHtml(name)+'</div>'+
-          '<div class="ciMeta">'+p.price.toFixed(2)+' '+CURRENCY+'</div></div></div>'+
-          '<div class="ciRight"><div class="qty">'+
-            '<button type="button" data-dec="'+p.id+'">−</button><span>'+it.qty+'</span>'+
-            '<button type="button" data-inc="'+p.id+'">+</button></div>'+
-            '<button class="btn danger" type="button" data-rm="'+p.id+'">✕</button></div></div>';
+  <script>
+    // =========================
+    // CONFIG (Final)
+    // =========================
+    var ETH_ADDRESS = "0xb56a89f790060cbb0f08d02234921e5fefff11a6";
+    var MERCHANT_EMAIL = "bfars725@gmail.com";
+    var CURRENCY = "USD";
+
+    // WhatsApp: +249112550653 => use international format without "+"
+    var WHATSAPP_NUMBER = "249112550653";
+
+    // =========================
+    // Products (final prices)
+    // =========================
+    var PRODUCTS = [
+      { id:"c_classic", category:"Courses", tag:"Course", price:10.00, icon:"course",
+        name_ar:"كورس تعلم التداول من الصفر - الكورس الكلاسيكي",
+        name_en:"Trading From Zero - Classic Course",
+        desc_ar:"محتوى منظم للمبتدئين + تطبيق عملي.",
+        desc_en:"Structured beginner content + practical practice."
+      },
+      { id:"c_ict", category:"Courses", tag:"Course", price:10.00, icon:"ict",
+        name_ar:"كورس تعلم التداول من الصفر - كورس ICT",
+        name_en:"Trading From Zero - ICT Course",
+        desc_ar:"استراتيجية ICT مع أمثلة وتطبيق.",
+        desc_en:"ICT concepts with examples & execution."
+      },
+      { id:"c_smc", category:"Courses", tag:"Course", price:10.00, icon:"smc",
+        name_ar:"كورس تعلم التداول من الصفر - كورس SMC",
+        name_en:"Trading From Zero - SMC Course",
+        desc_ar:"Smart Money Concepts بشكل مبسط.",
+        desc_en:"Smart Money Concepts simplified."
+      },
+      { id:"c_sk", category:"Courses", tag:"Course", price:10.00, icon:"sk",
+        name_ar:"كورس تعلم التداول من الصفر - كورس SK",
+        name_en:"Trading From Zero - SK Course",
+        desc_ar:"منهج واضح + أمثلة جاهزة.",
+        desc_en:"Clear framework + ready examples."
+      },
+      { id:"usdt", category:"USDT", tag:"Service", price:10.00, icon:"usdt",
+        name_ar:"شحن USDT",
+        name_en:"USDT Top-up",
+        desc_ar:"شحن سريع وآمن حسب التعليمات.",
+        desc_en:"Fast & secure top-up as instructed."
+      },
+      { id:"ex_create", category:"Exness", tag:"Service", price:10.00, icon:"exness",
+        name_ar:"حسابات اكسنس - إنشاء حسابات Exness",
+        name_en:"Exness - Account Creation",
+        desc_ar:"إنشاء حساب مع إعدادات صحيحة.",
+        desc_en:"Create account with correct setup."
+      },
+      { id:"ex_proof", category:"Exness", tag:"Service", price:10.00, icon:"proof",
+        name_ar:"حسابات اكسنس - توثيق السكن للحسابات الجاهزة",
+        name_en:"Exness - Proof of Residence (Ready Accounts)",
+        desc_ar:"مساعدة في توثيق السكن للحساب.",
+        desc_en:"Help with proof of residence verification."
+      },
+      { id:"bot_gold", category:"Bots", tag:"Bot", price:50.00, icon:"gold",
+        name_ar:"بوتات التداول الآلي - بوت تداول الذهب",
+        name_en:"Auto Trading Bots - Gold Bot",
+        desc_ar:"إعدادات محسّنة لتداول الذهب.",
+        desc_en:"Optimized settings for Gold trading."
+      },
+      { id:"bot_fx", category:"Bots", tag:"Bot", price:30.00, icon:"fx",
+        name_ar:"بوتات التداول الآلي - بوت تداول الأزواج",
+        name_en:"Auto Trading Bots - FX Pairs Bot",
+        desc_ar:"تداول أزواج الفوركس آليًا.",
+        desc_en:"Automate FX pairs trading."
+      },
+      { id:"bot_stk", category:"Bots", tag:"Bot", price:30.00, icon:"stocks",
+        name_ar:"بوتات التداول الآلي - بوت تداول الأسهم والمؤشرات",
+        name_en:"Auto Trading Bots - Stocks & Indices Bot",
+        desc_ar:"بوت للأسهم والمؤشرات بإعدادات واضحة.",
+        desc_en:"Stocks & indices bot with clear presets."
+      },
+      { id:"bot_crypto", category:"Bots", tag:"Bot", price:30.00, icon:"crypto",
+        name_ar:"بوتات التداول الآلي - بوت تداول العملات الرقمية",
+        name_en:"Auto Trading Bots - Crypto Bot",
+        desc_ar:"بوت للعملات الرقمية مع إدارة مخاطر.",
+        desc_en:"Crypto bot with risk management."
       }
-      box.innerHTML = html;
+    ];
 
-      var inc=box.querySelectorAll("[data-inc]");
-      for(var a=0;a<inc.length;a++){
-        (function(btn){ btn.addEventListener("click", function(){
-          var id=btn.getAttribute("data-inc"); var cart=getCart();
-          for(var k=0;k<cart.length;k++) if(cart[k].id===id){ setQty(id, cart[k].qty+1); break; }
-        }); })(inc[a]);
+    // =========================
+    // i18n
+    // =========================
+    var I18N = {
+      ar: {
+        tagline: "معًا لنشر المعرفة المالية في دول أفريقيا و شمال أفريقيا",
+        nav_home: "الرئيسية",
+        nav_services: "الخدمات والأسعار",
+        nav_checkout: "الدفع والشراء",
+        cart: "السلة",
+        hero_title: "متجر DEX treading",
+        hero_desc: "اختر المنتج، أضفه للسلة، ثم أكمل الدفع. أو اطلب مباشرة عبر واتساب.",
+        hero_shop: "تصفح المنتجات",
+        hero_checkout: "إتمام الشراء",
+        hero_services: "طرق الدفع والأسعار",
+        k1t: "AR / EN", k1d: "تبديل اللغة بضغطة",
+        k2t: "دفع مرن", k2d: "بنك / فوري / بايننس / ERC20",
+        k3t: "طلب سريع", k3d: "واتساب + نص طلب جاهز",
+        quick_title: "معلومات سريعة",
+        quick_desc: "عنوان ERC20 جاهز للنسخ",
+        copy_eth: "نسخ عنوان ETH",
+        eth_box_title: "عنوان الدفع على شبكة Ethereum (ERC20)",
+        eth_hint: "أرسل USDT (ERC20) أو ETH إلى هذا العنوان فقط.",
+        price_rule_title: "قواعد الأسعار",
+        price_rule_body: "كل المنتجات والخدمات = 10$ — البوتات = 30$ — بوت الذهب = 50$",
+        products_title: "المنتجات والخدمات",
+        products_subtitle: "فلتر القسم أو ابحث، ثم أضف للسلة.",
+        add: "أضف للسلة",
+        empty_cart: "السلة فارغة. أضف منتجات من الصفحة الرئيسية أولًا.",
+        subtotal: "الإجمالي",
+        clear_cart: "تفريغ السلة",
+        go_checkout: "الذهاب للدفع",
+        services_title: "الخدمات والأسعار",
+        services_sub: "كل الأسعار بالدولار (USD) ويمكن الدفع بالطرق التالية.",
+        pricing_title: "جدول الأسعار",
+        pricing_hint: "الأسعار ثابتة حسب القواعد المتفق عليها.",
+        th_item: "المنتج/الخدمة",
+        th_cat: "التصنيف",
+        th_price: "السعر",
+        pay_title: "طرق الدفع",
+        pay1t: "بنك الخرطوم", pay1v: "رقم الحساب: 8108407",
+        pay2t: "فوري سودان", pay2v: "رقم الحساب: 52000220",
+        pay3t: "Binance Pay", pay3v: "المعرّف: 850037703",
+        pay4t: "عملات رقمية (ERC20)", pay4h: "انسخ العنوان أدناه",
+        after_pay: "بعد الدفع: اذهب لصفحة (الدفع والشراء) واكتب TxID/رقم العملية لتوليد نص الطلب.",
+        back_home: "رجوع للرئيسية",
+        checkout_go: "إتمام الشراء",
+        checkout_title: "إتمام الدفع والشراء",
+        checkout_sub: "املأ البيانات + TxID، ثم اضغط “توليد الطلب”.",
+        customer_title: "بيانات العميل",
+        full_name: "الاسم الكامل",
+        phone: "رقم الهاتف",
+        email: "البريد الإلكتروني",
+        country: "الدولة/المدينة",
+        pay_method: "طريقة الدفع",
+        tx: "TxID / رقم العملية",
+        tx_hint: "مثال: رقم التحويل البنكي أو معرف العملية أو TxID للعملات الرقمية.",
+        note: "ملاحظة إضافية (اختياري)",
+        generate: "توليد الطلب",
+        copy_order: "نسخ نص الطلب",
+        email_order: "إرسال عبر البريد",
+        wa_order: "إرسال عبر واتساب",
+        checkout_help: "بعد توليد الطلب: يمكنك النسخ أو الإرسال عبر البريد أو واتساب مباشرة.",
+        summary_title: "ملخص الطلب",
+        sum_item:"الصنف", sum_qty:"الكمية", sum_price:"السعر", sum_total:"الإجمالي",
+        total:"المجموع",
+        merchant_title:"بيانات الاستلام",
+        merchant_hint:"إرسال الطلب إلى البريد التالي:",
+        eth_pay_title:"عنوان الدفع (ERC20)",
+        eth_pay_hint:"انسخ العنوان وتأكد من اختيار شبكة Ethereum (ERC20).",
+        clear_checkout:"تفريغ السلة",
+        back_shop:"الرجوع للمنتجات",
+        preview_title:"نص الطلب الجاهز",
+        footer_note:"واجهة متجر جاهزة للبيع (بدون بوابة دفع تلقائية). الطلب يتم عبر واتساب/البريد بعد الدفع.",
+        chip_all:"الكل",
+        chip_courses:"الكورسات",
+        chip_usdt:"USDT",
+        chip_exness:"Exness",
+        chip_bots:"البوتات",
+        search_ph:"ابحث عن منتج…",
+        reset:"إعادة",
+        wa_float:"اطلب عبر واتساب",
+        wa_sub:"يرسل تفاصيل السلة",
+        wa_hint:"تستطيع أيضًا إرسال الطلب عبر واتساب مباشرة.",
+        wa_service_hint:"إذا واجهت أي مشكلة في الدفع، أرسل لنا رسالة واتساب وسنساعدك."
+      },
+      en: {
+        tagline: "Together to spread financial knowledge in Africa & North Africa",
+        nav_home: "Home",
+        nav_services: "Services & Pricing",
+        nav_checkout: "Checkout",
+        cart: "Cart",
+        hero_title: "DEX treading Store",
+        hero_desc: "Pick an item, add to cart, then checkout — or order instantly via WhatsApp.",
+        hero_shop: "Browse products",
+        hero_checkout: "Checkout",
+        hero_services: "Pricing & Payments",
+        k1t: "AR / EN", k1d: "One-click language switch",
+        k2t: "Flexible Pay", k2d: "Bank / Foory / Binance / ERC20",
+        k3t: "Fast Order", k3d: "WhatsApp + ready text",
+        quick_title: "Quick Info",
+        quick_desc: "ERC20 address ready to copy",
+        copy_eth: "Copy ETH address",
+        eth_box_title: "Payment address on Ethereum (ERC20)",
+        eth_hint: "Send USDT (ERC20) or ETH to this address only.",
+        price_rule_title: "Pricing Rules",
+        price_rule_body: "All products/services = $10 — Bots = $30 — Gold Bot = $50",
+        products_title: "Products & Services",
+        products_subtitle: "Filter by category or search, then add to cart.",
+        add: "Add to cart",
+        empty_cart: "Your cart is empty. Add items from the Home page first.",
+        subtotal: "Total",
+        clear_cart: "Clear cart",
+        go_checkout: "Go to checkout",
+        services_title: "Services & Pricing",
+        services_sub: "All prices are in USD. Pay using the methods below.",
+        pricing_title: "Pricing Table",
+        pricing_hint: "Fixed pricing based on the agreed rules.",
+        th_item: "Item",
+        th_cat: "Category",
+        th_price: "Price",
+        pay_title: "Payment Methods",
+        pay1t: "Bank of Khartoum", pay1v: "Account: 8108407",
+        pay2t: "Foory Sudan", pay2v: "Account: 52000220",
+        pay3t: "Binance Pay", pay3v: "ID: 850037703",
+        pay4t: "Crypto (ERC20)", pay4h: "Copy the address below",
+        after_pay: "After payment: go to Checkout and enter your TxID/transaction number to generate the order text.",
+        back_home: "Back to Home",
+        checkout_go: "Checkout",
+        checkout_title: "Checkout & Purchase",
+        checkout_sub: "Fill details + TxID, then click “Generate Order”.",
+        customer_title: "Customer Info",
+        full_name: "Full name",
+        phone: "Phone",
+        email: "Email",
+        country: "Country/City",
+        pay_method: "Payment method",
+        tx: "TxID / Transaction number",
+        tx_hint: "Example: bank transfer reference, payment ID, or crypto TxID.",
+        note: "Extra note (optional)",
+        generate: "Generate order",
+        copy_order: "Copy order text",
+        email_order: "Send via email",
+        wa_order: "Send via WhatsApp",
+        checkout_help: "After generating: copy or send via email/WhatsApp.",
+        summary_title: "Order Summary",
+        sum_item:"Item", sum_qty:"Qty", sum_price:"Price", sum_total:"Total",
+        total:"Total",
+        merchant_title:"Receiver",
+        merchant_hint:"Send your order to:",
+        eth_pay_title:"Payment address (ERC20)",
+        eth_pay_hint:"Copy the address and ensure Ethereum network (ERC20).",
+        clear_checkout:"Clear cart",
+        back_shop:"Back to products",
+        preview_title:"Ready order text",
+        footer_note:"Sales-ready storefront (no automatic payment gateway). Orders are confirmed via WhatsApp/email after payment.",
+        chip_all:"All",
+        chip_courses:"Courses",
+        chip_usdt:"USDT",
+        chip_exness:"Exness",
+        chip_bots:"Bots",
+        search_ph:"Search products…",
+        reset:"Reset",
+        wa_float:"Order on WhatsApp",
+        wa_sub:"Sends cart details",
+        wa_hint:"You can also send your order directly on WhatsApp.",
+        wa_service_hint:"Need help with payment? Message us on WhatsApp."
       }
-      var dec=box.querySelectorAll("[data-dec]");
-      for(var b=0;b<dec.length;b++){
-        (function(btn){ btn.addEventListener("click", function(){
-          var id=btn.getAttribute("data-dec"); var cart=getCart();
-          for(var k=0;k<cart.length;k++) if(cart[k].id===id){ setQty(id, cart[k].qty-1); break; }
-        }); })(dec[b]);
+    };
+
+    // =========================
+    // State
+    // =========================
+    var CART_KEY = "dex_store_cart_v5";
+    var LANG_KEY = "dex_store_lang_v5";
+    var FILTER_KEY = "dex_store_filter_v5";
+
+    function $(id){ return document.getElementById(id); }
+    function getLang(){ return localStorage.getItem(LANG_KEY) || "ar"; }
+    function setLang(l){ localStorage.setItem(LANG_KEY, l); applyLang(); renderAll(); }
+    function t(key){ return I18N[getLang()][key]; }
+
+    function getFilter(){ return localStorage.getItem(FILTER_KEY) || "all"; }
+    function setFilter(f){ localStorage.setItem(FILTER_KEY, f); renderAll(); }
+
+    function getCart(){
+      try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+      catch(e){ return []; }
+    }
+    function saveCart(cart){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+
+    function findProduct(id){
+      for(var i=0;i<PRODUCTS.length;i++){ if(PRODUCTS[i].id===id) return PRODUCTS[i]; }
+      return null;
+    }
+
+    function addToCart(id){
+      var cart = getCart();
+      var found = false;
+      for(var i=0;i<cart.length;i++){
+        if(cart[i].id===id){ cart[i].qty += 1; found = true; break; }
       }
-      var rm=box.querySelectorAll("[data-rm]");
-      for(var c=0;c<rm.length;c++){
-        (function(btn){ btn.addEventListener("click", function(){ removeFromCart(btn.getAttribute("data-rm")); }); })(rm[c]);
+      if(!found){ cart.push({id:id, qty:1}); }
+      saveCart(cart);
+      renderAll();
+      openCart();
+    }
+
+    function setQty(id, qty){
+      var cart = getCart();
+      var next = [];
+      for(var i=0;i<cart.length;i++){
+        if(cart[i].id===id){
+          var q = qty; if(q < 1) q = 1;
+          next.push({id:id, qty:q});
+        } else next.push(cart[i]);
       }
+      saveCart(next);
+      renderAll();
     }
 
-    setText("subtotalValue", cartTotal().toFixed(2)+" "+CURRENCY);
-
-    var count=cartCount();
-    var bubble=$("cartCountBubble");
-    if(bubble){
-      if(count>0){ bubble.style.display="grid"; bubble.textContent=String(count); }
-      else bubble.style.display="none";
+    function removeFromCart(id){
+      var cart = getCart();
+      var next = [];
+      for(var i=0;i<cart.length;i++){ if(cart[i].id!==id) next.push(cart[i]); }
+      saveCart(next);
+      renderAll();
     }
 
-    // Checkout side
-    setText("merchantEmail", MERCHANT_EMAIL);
-
-    var emptyBox=$("emptyCartCheckout");
-    var wrap=$("summaryWrap");
-    var table=$("summaryTable");
-    if(!emptyBox || !wrap || !table) return;
-
-    if(items.length===0){
-      emptyBox.style.display="block";
-      setText("emptyCartCheckout", I18N[getLang()].emptyCart);
-      wrap.style.display="none";
-      $("orderPreviewBox").style.display="none";
-      return;
+    function clearCart(){
+      saveCart([]);
+      renderAll();
     }
 
-    emptyBox.style.display="none";
-    wrap.style.display="block";
-
-    var rows="";
-    for(var i=0;i<items.length;i++){
-      var it=items[i], p=it.p;
-      var name=(getLang()==="ar")?p.name_ar:p.name_en;
-      rows += "<tr><td>"+escapeHtml(name)+"</td><td>"+it.qty+"</td><td>"+p.price.toFixed(2)+" "+CURRENCY+"</td><td>"+(p.price*it.qty).toFixed(2)+" "+CURRENCY+"</td></tr>";
-    }
-    table.innerHTML = rows;
-    setText("totalValue", cartTotal().toFixed(2)+" "+CURRENCY);
-  }
-
-  function renderAll(){
-    renderProducts();
-    renderPricingTable();
-    renderCart();
-  }
-
-  function copyText(text){
-    if(navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text);
-    var ta=document.createElement("textarea"); ta.value=text; document.body.appendChild(ta); ta.select();
-    try{ document.execCommand("copy"); }catch(e){}
-    document.body.removeChild(ta); return Promise.resolve();
-  }
-
-  function buildOrderText(){
-    var items=cartDetailed();
-    var lines=[];
-    lines.push("DEX treading - Order");
-    lines.push("--------------------------------");
-    lines.push("Name: "+$("fullName").value.trim());
-    lines.push("Phone: "+$("phone").value.trim());
-    lines.push("Email: "+$("email").value.trim());
-    lines.push("Country/City: "+$("country").value.trim());
-    lines.push("Payment method: "+$("payMethod").value);
-    lines.push("TxID/Ref: "+$("txid").value.trim());
-    var note=$("note").value.trim(); if(note) lines.push("Note: "+note);
-    lines.push("--------------------------------");
-    lines.push("Items:");
-    for(var i=0;i<items.length;i++){
-      var it=items[i], p=it.p;
-      var name=(getLang()==="ar")?p.name_ar:p.name_en;
-      lines.push("- "+name+" | Qty: "+it.qty+" | "+(p.price*it.qty).toFixed(2)+" "+CURRENCY);
-    }
-    lines.push("--------------------------------");
-    lines.push("TOTAL: "+cartTotal().toFixed(2)+" "+CURRENCY);
-    lines.push("ETH (ERC20): "+ETH_ADDRESS);
-    return lines.join("\n");
-  }
-
-  function setEmailLink(orderText){
-    var subject=encodeURIComponent("DEX treading - New Order");
-    var body=encodeURIComponent(orderText);
-    setAttr("emailOrderBtn","href","mailto:"+encodeURIComponent(MERCHANT_EMAIL)+"?subject="+subject+"&body="+body);
-  }
-
-  // ====== EVENTS ======
-  function bind(){
-    $("overlay").addEventListener("click", closeCart);
-    $("openCartBtn").addEventListener("click", openCart);
-    $("closeCartBtn").addEventListener("click", closeCart);
-    $("clearCartBtn").addEventListener("click", clearCart);
-    $("clearCartBtnCheckout").addEventListener("click", clearCart);
-
-    $("langBtn").addEventListener("click", function(){
-      setLang(getLang()==="ar" ? "en" : "ar");
-      $("langBtn").textContent = (getLang()==="ar") ? "EN" : "AR";
-    });
-
-    function copyEth(){
-      copyText(ETH_ADDRESS);
-    }
-    $("copyEthBtn").addEventListener("click", copyEth);
-    $("copyEthTopBtn").addEventListener("click", copyEth);
-
-    $("orderForm").addEventListener("submit", function(e){
-      e.preventDefault();
-      if(cartDetailed().length===0){ alert(I18N[getLang()].emptyCart); return; }
-
-      var required = ["fullName","phone","email","country","txid"];
-      for(var i=0;i<required.length;i++){
-        if(!$(required[i]).value.trim()){ alert("Please fill all required fields."); return; }
+    function cartDetailed(){
+      var cart = getCart();
+      var out = [];
+      for(var i=0;i<cart.length;i++){
+        var p = findProduct(cart[i].id);
+        if(p) out.push({p:p, qty:cart[i].qty});
       }
+      return out;
+    }
 
-      var txt = buildOrderText();
-      $("orderPreviewBox").style.display="block";
-      $("orderPreviewText").textContent = txt;
-      setEmailLink(txt);
-      localStorage.setItem("dex_last_order_text", txt);
-    });
+    function cartCount(){
+      var cart = getCart();
+      var c = 0;
+      for(var i=0;i<cart.length;i++) c += cart[i].qty;
+      return c;
+    }
 
-    $("copyOrderBtn").addEventListener("click", function(){
-      var txt = $("orderPreviewText").textContent || localStorage.getItem("dex_last_order_text") || "";
-      if(!txt){ alert("Generate the order first."); return; }
-      copyText(txt);
-    });
+    function cartTotal(){
+      var items = cartDetailed();
+      var sum = 0;
+      for(var i=0;i<items.length;i++) sum += items[i].p.price * items[i].qty;
+      return sum;
+    }
 
+    // Router
+    function setActivePage(){
+      var hash = (location.hash || "#home").replace("#","");
+      var pages = document.querySelectorAll(".page");
+      for(var i=0;i<pages.length;i++) pages[i].classList.remove("active");
+      var page = document.getElementById(hash) || document.getElementById("home");
+      page.classList.add("active");
+      window.scrollTo({top:0, behavior:"auto"});
+      renderAll();
+    }
     window.addEventListener("hashchange", setActivePage);
-  }
 
-  // ====== INIT ======
-  setText("year", new Date().getFullYear());
-  setText("year2", new Date().getFullYear());
-  setText("year3", new Date().getFullYear());
+    // Drawer
+    var overlay, drawer;
+    function openCart(){ overlay.classList.add("show"); drawer.classList.add("show"); }
+    function closeCart(){ overlay.classList.remove("show"); drawer.classList.remove("show"); }
 
-  // default address
-  setText("ethAddress", ETH_ADDRESS);
-  setText("ethAddress2", ETH_ADDRESS);
-  setText("ethAddress3", ETH_ADDRESS);
+    // SVG Icons
+    function iconSVG(kind){
+      var stroke = "rgba(255,255,255,.85)";
+      var fill = "rgba(30,91,255,.20)";
+      var fill2 = "rgba(79,124,255,.18)";
+      function base(content){
+        return ''+
+        '<svg class="svg" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+          '<defs>'+
+            '<linearGradient id="g1" x1="12" y1="10" x2="84" y2="86" gradientUnits="userSpaceOnUse">'+
+              '<stop stop-color="'+fill+'"/><stop offset="1" stop-color="'+fill2+'"/>'+
+            '</linearGradient>'+
+          '</defs>'+
+          '<rect x="10" y="10" width="76" height="76" rx="22" fill="url(#g1)" stroke="rgba(255,255,255,.12)"/>'+
+          content+
+        '</svg>';
+      }
 
-  applyLang();
-  bind();
-  setActivePage();
-  renderAll();
-</script>
+      if(kind==="usdt"){
+        return base(
+          '<circle cx="48" cy="48" r="18" stroke="'+stroke+'" stroke-width="2"/>'+
+          '<path d="M38 41h20M40 48h16M38 55h20" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M48 30v36" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'
+        );
+      }
+      if(kind==="gold"){
+        return base(
+          '<path d="M28 54l10-20h20l10 20-10 10H38L28 54z" stroke="'+stroke+'" stroke-width="2" fill="rgba(255,176,32,.14)"/>'+
+          '<path d="M38 34l10 20 10-20" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+        );
+      }
+      if(kind==="crypto"){
+        return base(
+          '<path d="M48 28l14 10v20L48 68 34 58V38l14-10z" stroke="'+stroke+'" stroke-width="2"/>'+
+          '<path d="M48 34v28" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M42 42h10a6 6 0 010 12H42" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'
+        );
+      }
+      if(kind==="fx"){
+        return base(
+          '<path d="M28 60c10-18 18-18 28 0" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M40 36h28" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M40 36l-8 8" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M68 36l-8 8" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<circle cx="32" cy="44" r="3" fill="'+stroke+'"/>'+
+          '<circle cx="60" cy="60" r="3" fill="'+stroke+'"/>'
+        );
+      }
+      if(kind==="stocks"){
+        return base(
+          '<path d="M30 62V46m12 16V38m12 24V44m12 18V34" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M28 66h40" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M30 32l12 10 12-8 12 6" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+        );
+      }
+      if(kind==="exness"){
+        return base(
+          '<path d="M30 58V38h10l8 10 8-10h10v20H56l-8-10-8 10H30z" stroke="'+stroke+'" stroke-width="2" stroke-linejoin="round"/>'+
+          '<path d="M30 62h36" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'
+        );
+      }
+      if(kind==="proof"){
+        return base(
+          '<path d="M34 30h28v36H34V30z" stroke="'+stroke+'" stroke-width="2" stroke-linejoin="round"/>'+
+          '<path d="M40 40h16M40 48h16M40 56h12" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'+
+          '<path d="M62 38l6 6" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'
+        );
+      }
+      if(kind==="ict" || kind==="smc" || kind==="sk"){
+        return base(
+          '<path d="M30 40l18-8 18 8-18 8-18-8z" stroke="'+stroke+'" stroke-width="2" stroke-linejoin="round"/>'+
+          '<path d="M30 40v16l18 8 18-8V40" stroke="'+stroke+'" stroke-width="2" stroke-linejoin="round"/>'+
+          '<path d="M34 58h28" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'
+        );
+      }
+      return base(
+        '<path d="M30 40l18-8 18 8-18 8-18-8z" stroke="'+stroke+'" stroke-width="2" stroke-linejoin="round"/>'+
+        '<path d="M30 40v16l18 8 18-8V40" stroke="'+stroke+'" stroke-width="2" stroke-linejoin="round"/>'+
+        '<path d="M66 44v14" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'
+      );
+    }
+
+    // Filter + search helpers
+    function normalize(s){ return String(s||"").toLowerCase(); }
+    function matches(p, q, lang){
+      if(!q) return true;
+      var title = (lang==="ar") ? p.name_ar : p.name_en;
+      var desc = (lang==="ar") ? p.desc_ar : p.desc_en;
+      return normalize(title).indexOf(q)>=0 || normalize(desc).indexOf(q)>=0 || normalize(p.category).indexOf(q)>=0;
+    }
+    function passesFilter(p, f){
+      if(f==="all") return true;
+      if(f==="Courses") return p.category==="Courses";
+      if(f==="USDT") return p.category==="USDT";
+      if(f==="Exness") return p.category==="Exness";
+      if(f==="Bots") return p.category==="Bots";
+      return true;
+    }
+
+    // Render
+    function applyLang(){
+      var lang = getLang();
+      document.documentElement.lang = lang;
+      document.documentElement.dir = (lang==="ar") ? "rtl" : "ltr";
+
+      $("tagline").textContent = t("tagline");
+      $("navHome").textContent = t("nav_home");
+      $("navServices").textContent = t("nav_services");
+      $("navCheckout").textContent = t("nav_checkout");
+      $("cartBtnText").textContent = t("cart");
+      $("cartTitle").textContent = t("cart");
+
+      $("heroTitle").textContent = t("hero_title");
+      $("heroDesc").textContent = t("hero_desc");
+      $("heroShopBtn").textContent = t("hero_shop");
+      $("heroCheckoutBtn").textContent = t("hero_checkout");
+      $("heroServicesBtn").textContent = t("hero_services");
+
+      $("kpi1Title").textContent = t("k1t");
+      $("kpi1Desc").textContent = t("k1d");
+      $("kpi2Title").textContent = t("k2t");
+      $("kpi2Desc").textContent = t("k2d");
+      $("kpi3Title").textContent = t("k3t");
+      $("kpi3Desc").textContent = t("k3d");
+
+      $("quickTitle").textContent = t("quick_title");
+      $("quickDesc").textContent = t("quick_desc");
+      $("copyEthTopBtn").textContent = t("copy_eth");
+      $("ethBoxTitle").textContent = t("eth_box_title");
+      $("ethHint").textContent = t("eth_hint");
+      $("priceRuleTitle").textContent = t("price_rule_title");
+      $("priceRuleBody").textContent = t("price_rule_body");
+
+      $("productsTitle").textContent = t("products_title");
+      $("productsSubtitle").textContent = t("products_subtitle");
+
+      $("cartEmptyNotice").textContent = t("empty_cart");
+      $("subtotalLabel").textContent = t("subtotal");
+      $("clearCartBtn").textContent = t("clear_cart");
+      $("goCheckoutFromCart").textContent = t("go_checkout");
+
+      $("servicesTitle").textContent = t("services_title");
+      $("servicesSubtitle").textContent = t("services_sub");
+      $("pricingTitle").textContent = t("pricing_title");
+      $("pricingHint").textContent = t("pricing_hint");
+      $("thItem").textContent = t("th_item");
+      $("thCat").textContent = t("th_cat");
+      $("thPrice").textContent = t("th_price");
+      $("payTitle").textContent = t("pay_title");
+      $("pay1Title").textContent = t("pay1t");
+      $("pay1Val").textContent = t("pay1v");
+      $("pay2Title").textContent = t("pay2t");
+      $("pay2Val").textContent = t("pay2v");
+      $("pay3Title").textContent = t("pay3t");
+      $("pay3Val").textContent = t("pay3v");
+      $("pay4Title").textContent = t("pay4t");
+      $("pay4Hint").textContent = t("pay4h");
+      $("copyEthBtn").textContent = t("copy_eth");
+      $("afterPayNote").textContent = t("after_pay");
+      $("backHomeBtn").textContent = t("back_home");
+      $("goCheckoutBtn").textContent = t("checkout_go");
+
+      $("checkoutTitle").textContent = t("checkout_title");
+      $("checkoutSubtitle").textContent = t("checkout_sub");
+      $("customerTitle").textContent = t("customer_title");
+      $("fullNameLabel").textContent = t("full_name");
+      $("phoneLabel").textContent = t("phone");
+      $("emailLabel").textContent = t("email");
+      $("countryLabel").textContent = t("country");
+      $("payMethodLabel").textContent = t("pay_method");
+      $("txLabel").textContent = t("tx");
+      $("txHint").textContent = t("tx_hint");
+      $("noteLabel").textContent = t("note");
+      $("generateBtn").textContent = t("generate");
+      $("copyOrderBtn").textContent = t("copy_order");
+      $("emailOrderBtn").textContent = t("email_order");
+      $("waOrderBtn").textContent = t("wa_order");
+      $("checkoutHelp").textContent = t("checkout_help");
+
+      $("summaryTitle").textContent = t("summary_title");
+      $("sumItem").textContent = t("sum_item");
+      $("sumQty").textContent = t("sum_qty");
+      $("sumPrice").textContent = t("sum_price");
+      $("sumTotal").textContent = t("sum_total");
+      $("totalLabel").textContent = t("total");
+
+      $("merchantTitle").textContent = t("merchant_title");
+      $("merchantHint").textContent = t("merchant_hint");
+      $("ethPayTitle").textContent = t("eth_pay_title");
+      $("ethPayHint").textContent = t("eth_pay_hint");
+
+      $("clearCartBtnCheckout").textContent = t("clear_checkout");
+      $("backShopBtn").textContent = t("back_shop");
+
+      $("orderPreviewTitle").textContent = t("preview_title");
+      $("footerNote").textContent = t("footer_note");
+
+      $("waFloatText").textContent = t("wa_float");
+      $("waFloatSub").textContent = t("wa_sub");
+      $("waHint").textContent = t("wa_hint");
+      $("waServiceHint").textContent = t("wa_service_hint");
+
+      $("search").placeholder = t("search_ph");
+      $("resetBtn").textContent = t("reset");
+
+      // placeholders
+      $("fullName").placeholder = t("full_name");
+      $("phone").placeholder = t("phone");
+      $("email").placeholder = t("email");
+      $("country").placeholder = t("country");
+      $("txid").placeholder = t("tx");
+      $("note").placeholder = t("note");
+
+      renderChips();
+    }
+
+    function renderChips(){
+      var lang = getLang();
+      var f = getFilter();
+      var chips = [
+        {id:"all", label:t("chip_all")},
+        {id:"Courses", label:t("chip_courses")},
+        {id:"USDT", label:t("chip_usdt")},
+        {id:"Exness", label:t("chip_exness")},
+        {id:"Bots", label:t("chip_bots")}
+      ];
+      var html = "";
+      for(var i=0;i<chips.length;i++){
+        var c = chips[i];
+        var active = (f===c.id) ? "active" : "";
+        html += '<div class="chip '+active+'" data-chip="'+c.id+'">'+escapeHtml(c.label)+'</div>';
+      }
+      $("chips").innerHTML = html;
+
+      var els = $("chips").querySelectorAll("[data-chip]");
+      for(var j=0;j<els.length;j++){
+        (function(el){
+          el.addEventListener("click", function(){
+            setFilter(el.getAttribute("data-chip"));
+          });
+        })(els[j]);
+      }
+    }
+
+    function renderProducts(){
+      var lang = getLang();
+      var grid = $("productsGrid");
+      var q = normalize($("search").value || "");
+      var f = getFilter();
+
+      var shown = 0;
+      var html = "";
+      for(var i=0;i<PRODUCTS.length;i++){
+        var p = PRODUCTS[i];
+        if(!passesFilter(p, f)) continue;
+        if(!matches(p, q, lang)) continue;
+
+        shown++;
+        var title = (lang==="ar") ? p.name_ar : p.name_en;
+        var desc = (lang==="ar") ? p.desc_ar : p.desc_en;
+
+        html += ''+
+          '<div class="product">'+
+            '<div class="pMedia">'+
+              '<div class="pBadges">'+
+                '<span class="badge">'+escapeHtml(p.tag)+'</span>'+
+                '<span class="badge">'+p.price.toFixed(2)+' '+CURRENCY+'</span>'+
+              '</div>'+
+              iconSVG(p.icon)+
+            '</div>'+
+            '<div class="pBody">'+
+              '<div class="pTitle">'+escapeHtml(title)+'</div>'+
+              '<div class="pDesc">'+escapeHtml(desc)+'</div>'+
+              '<div class="pFooter">'+
+                '<div class="price">'+p.price.toFixed(2)+' '+CURRENCY+' <span>/ '+(lang==="ar"?"للمنتج":"item")+'</span></div>'+
+                '<button class="btn primary" type="button" data-add="'+p.id+'">'+t("add")+'</button>'+
+              '</div>'+
+            '</div>'+
+          '</div>';
+      }
+
+      if(shown===0){
+        html = '<div class="notice" style="grid-column:1/-1">'+(lang==="ar" ? "لا توجد نتائج. جرّب كلمة أخرى أو اختر (الكل)." : "No results. Try another keyword or choose (All).")+'</div>';
+      }
+
+      grid.innerHTML = html;
+
+      var addBtns = grid.querySelectorAll("[data-add]");
+      for(var j=0;j<addBtns.length;j++){
+        (function(btn){
+          btn.addEventListener("click", function(){
+            addToCart(btn.getAttribute("data-add"));
+          });
+        })(addBtns[j]);
+      }
+    }
+
+    function renderCartDrawer(){
+      var items = cartDetailed();
+      var box = $("cartItems");
+      var empty = $("cartEmptyNotice");
+
+      if(items.length === 0){
+        empty.style.display = "block";
+        box.innerHTML = "";
+      } else {
+        empty.style.display = "none";
+        var html = "";
+        for(var i=0;i<items.length;i++){
+          var it = items[i];
+          var p = it.p;
+          var lang = getLang();
+          var name = (lang==="ar") ? p.name_ar : p.name_en;
+
+          html += ''+
+            '<div class="cartItem">'+
+              '<div class="ciLeft">'+
+                '<div class="ciIcon">'+miniIcon(p.icon)+'</div>'+
+                '<div>'+
+                  '<div class="ciName">'+escapeHtml(name)+'</div>'+
+                  '<div class="ciMeta">'+(p.price.toFixed(2))+' '+CURRENCY+'</div>'+
+                '</div>'+
+              '</div>'+
+              '<div class="ciRight">'+
+                '<div class="qty">'+
+                  '<button type="button" data-dec="'+p.id+'">−</button>'+
+                  '<span>'+it.qty+'</span>'+
+                  '<button type="button" data-inc="'+p.id+'">+</button>'+
+                '</div>'+
+                '<button class="btn danger" type="button" data-rm="'+p.id+'">✕</button>'+
+              '</div>'+
+            '</div>';
+        }
+        box.innerHTML = html;
+
+        var inc = box.querySelectorAll("[data-inc]");
+        for(var a=0;a<inc.length;a++){
+          (function(btn){
+            btn.addEventListener("click", function(){
+              var id = btn.getAttribute("data-inc");
+              var cart = getCart();
+              for(var k=0;k<cart.length;k++){
+                if(cart[k].id===id){ setQty(id, cart[k].qty+1); break; }
+              }
+            });
+          })(inc[a]);
+        }
+
+        var dec = box.querySelectorAll("[data-dec]");
+        for(var b=0;b<dec.length;b++){
+          (function(btn){
+            btn.addEventListener("click", function(){
+              var id = btn.getAttribute("data-dec");
+              var cart = getCart();
+              for(var k=0;k<cart.length;k++){
+                if(cart[k].id===id){ setQty(id, cart[k].qty-1); break; }
+              }
+            });
+          })(dec[b]);
+        }
+
+        var rm = box.querySelectorAll("[data-rm]");
+        for(var c=0;c<rm.length;c++){
+          (function(btn){
+            btn.addEventListener("click", function(){
+              removeFromCart(btn.getAttribute("data-rm"));
+            });
+          })(rm[c]);
+        }
+      }
+
+      $("subtotalValue").textContent = cartTotal().toFixed(2)+" "+CURRENCY;
+
+      var count = cartCount();
+      var bubble = $("cartCountBubble");
+      if(count > 0){
+        bubble.style.display = "grid";
+        bubble.textContent = String(count);
+      } else {
+        bubble.style.display = "none";
+      }
+    }
+
+    function miniIcon(kind){
+      var color = "rgba(255,255,255,.90)";
+      if(kind==="gold") return '<span style="font-weight:1000;color:'+color+'">Au</span>';
+      if(kind==="usdt") return '<span style="font-weight:1000;color:'+color+'">₮</span>';
+      if(kind==="crypto") return '<span style="font-weight:1000;color:'+color+'">₿</span>';
+      if(kind==="fx") return '<span style="font-weight:1000;color:'+color+'">FX</span>';
+      if(kind==="stocks") return '<span style="font-weight:1000;color:'+color+'">≋</span>';
+      if(kind==="exness") return '<span style="font-weight:1000;color:'+color+'">EX</span>';
+      if(kind==="proof") return '<span style="font-weight:1000;color:'+color+'">ID</span>';
+      return '<span style="font-weight:1000;color:'+color+'">📘</span>';
+    }
+
+    function renderServices(){
+      var tbody = $("pricingTable");
+      var lang = getLang();
+      var rows = "";
+      for(var i=0;i<PRODUCTS.length;i++){
+        var p = PRODUCTS[i];
+        rows += "<tr>"+
+          "<td>"+escapeHtml((lang==="ar")?p.name_ar:p.name_en)+"</td>"+
+          "<td>"+escapeHtml(p.category)+"</td>"+
+          "<td>"+p.price.toFixed(2)+" "+CURRENCY+"</td>"+
+        "</tr>";
+      }
+      tbody.innerHTML = rows;
+      $("ethAddress2").textContent = ETH_ADDRESS;
+    }
+
+    function renderCheckout(){
+      var items = cartDetailed();
+      $("merchantEmail").textContent = MERCHANT_EMAIL;
+      $("ethAddress3").textContent = ETH_ADDRESS;
+
+      var empty = $("emptyCartCheckout");
+      var wrap = $("summaryWrap");
+      var table = $("summaryTable");
+
+      if(items.length === 0){
+        empty.textContent = t("empty_cart");
+        empty.style.display = "block";
+        wrap.style.display = "none";
+        $("orderPreviewBox").style.display = "none";
+        $("emailOrderBtn").setAttribute("href", "#");
+        return;
+      }
+
+      empty.style.display = "none";
+      wrap.style.display = "block";
+
+      var rows = "";
+      for(var i=0;i<items.length;i++){
+        var it = items[i];
+        var p = it.p;
+        var lang = getLang();
+        var name = (lang==="ar") ? p.name_ar : p.name_en;
+        rows += "<tr>"+
+          "<td>"+escapeHtml(name)+"</td>"+
+          "<td>"+it.qty+"</td>"+
+          "<td>"+p.price.toFixed(2)+" "+CURRENCY+"</td>"+
+          "<td>"+(p.price*it.qty).toFixed(2)+" "+CURRENCY+"</td>"+
+        "</tr>";
+      }
+      table.innerHTML = rows;
+      $("totalValue").textContent = cartTotal().toFixed(2)+" "+CURRENCY;
+    }
+
+    function renderAll(){
+      $("ethAddress").textContent = ETH_ADDRESS;
+      renderProducts();
+      renderCartDrawer();
+      renderServices();
+      renderCheckout();
+    }
+
+    // Order building
+    function buildOrderText(form){
+      var lang = getLang();
+      var items = cartDetailed();
+      var lines = [];
+
+      lines.push("DEX treading - Order");
+      lines.push("--------------------------------");
+      if(form && form.fullName) lines.push("Name: " + form.fullName);
+      if(form && form.phone) lines.push("Phone: " + form.phone);
+      if(form && form.email) lines.push("Email: " + form.email);
+      if(form && form.country) lines.push("Country/City: " + form.country);
+      if(form && form.payMethod) lines.push("Payment method: " + form.payMethod);
+      if(form && form.txid) lines.push("TxID/Ref: " + form.txid);
+      if(form && form.note) lines.push("Note: " + form.note);
+
+      lines.push("--------------------------------");
+      lines.push("Items:");
+      for(var i=0;i<items.length;i++){
+        var it = items[i];
+        var p = it.p;
+        var name = (lang==="ar") ? p.name_ar : p.name_en;
+        lines.push("- " + name + " | Qty: " + it.qty + " | " + (p.price*it.qty).toFixed(2) + " " + CURRENCY);
+      }
+      lines.push("--------------------------------");
+      lines.push("TOTAL: " + cartTotal().toFixed(2) + " " + CURRENCY);
+      lines.push("ETH (ERC20): " + ETH_ADDRESS);
+
+      return lines.join("\n");
+    }
+
+    function buildWhatsAppLink(text){
+      var msg = encodeURIComponent(text);
+      return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + msg;
+    }
+
+    function setOrderPreview(text){
+      $("orderPreviewBox").style.display = "block";
+      $("orderPreviewText").textContent = text;
+    }
+
+    function setEmailLink(orderText){
+      var subject = encodeURIComponent("DEX treading - New Order");
+      var body = encodeURIComponent(orderText);
+      var href = "mailto:" + encodeURIComponent(MERCHANT_EMAIL) + "?subject=" + subject + "&body=" + body;
+      $("emailOrderBtn").setAttribute("href", href);
+    }
+
+    function copyText(text){
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        return navigator.clipboard.writeText(text);
+      }
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try{ document.execCommand("copy"); }catch(e){}
+      document.body.removeChild(ta);
+      return Promise.resolve();
+    }
+
+    function escapeHtml(s){
+      return String(s)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+    }
+
+    // Events
+    function bindEvents(){
+      overlay = $("overlay");
+      drawer = $("drawer");
+
+      $("openCartBtn").addEventListener("click", openCart);
+      $("closeCartBtn").addEventListener("click", closeCart);
+      overlay.addEventListener("click", closeCart);
+
+      $("clearCartBtn").addEventListener("click", clearCart);
+      $("clearCartBtnCheckout").addEventListener("click", clearCart);
+
+      $("langBtn").addEventListener("click", function(){
+        var next = (getLang()==="ar" ? "en" : "ar");
+        $("langBtn").textContent = (next==="ar" ? "EN" : "AR");
+        setLang(next);
+      });
+
+      $("search").addEventListener("input", function(){ renderProducts(); });
+      $("resetBtn").addEventListener("click", function(){
+        $("search").value = "";
+        setFilter("all");
+      });
+
+      function copyEth(){
+        copyText(ETH_ADDRESS).then(function(){
+          var btns = [$("copyEthBtn"), $("copyEthTopBtn")];
+          for(var i=0;i<btns.length;i++){
+            if(!btns[i]) continue;
+            var old = btns[i].textContent;
+            btns[i].textContent = "✓";
+            (function(b, t0){ setTimeout(function(){ b.textContent = t0; }, 900); })(btns[i], old);
+          }
+        });
+      }
+      $("copyEthBtn").addEventListener("click", copyEth);
+      $("copyEthTopBtn").addEventListener("click", copyEth);
+
+      // WhatsApp floating: send cart summary even before checkout
+      $("waFloatBtn").addEventListener("click", function(){
+        if(cartDetailed().length===0){
+          alert(t("empty_cart"));
+          return;
+        }
+        var msg = buildOrderText(null);
+        window.open(buildWhatsAppLink(msg), "_blank");
+      });
+
+      // Checkout form
+      $("orderForm").addEventListener("submit", function(e){
+        e.preventDefault();
+        if(cartDetailed().length === 0){
+          alert(t("empty_cart"));
+          return;
+        }
+
+        var form = {
+          fullName: $("fullName").value.trim(),
+          phone: $("phone").value.trim(),
+          email: $("email").value.trim(),
+          country: $("country").value.trim(),
+          payMethod: $("payMethod").value,
+          txid: $("txid").value.trim(),
+          note: $("note").value.trim()
+        };
+
+        if(!form.fullName || !form.phone || !form.email || !form.country || !form.txid){
+          alert(getLang()==="ar" ? "رجاءً أكمل كل الحقول المطلوبة." : "Please fill all required fields.");
+          return;
+        }
+
+        var orderText = buildOrderText(form);
+        setOrderPreview(orderText);
+        setEmailLink(orderText);
+
+        // store last order
+        localStorage.setItem("dex_last_order_text", orderText);
+      });
+
+      $("copyOrderBtn").addEventListener("click", function(){
+        var txt = $("orderPreviewText").textContent || localStorage.getItem("dex_last_order_text") || "";
+        if(!txt){
+          alert(getLang()==="ar" ? "قم بتوليد الطلب أولًا." : "Generate the order first.");
+          return;
+        }
+        copyText(txt).then(function(){
+          var btn = $("copyOrderBtn");
+          var old = btn.textContent;
+          btn.textContent = "✓";
+          setTimeout(function(){ btn.textContent = old; }, 900);
+        });
+      });
+
+      // WhatsApp from checkout: uses generated text if available, otherwise cart summary
+      $("waOrderBtn").addEventListener("click", function(){
+        if(cartDetailed().length===0){
+          alert(t("empty_cart"));
+          return;
+        }
+        var txt = $("orderPreviewText").textContent || buildOrderText(null);
+        window.open(buildWhatsAppLink(txt), "_blank");
+      });
+    }
+
+    // Init
+    function init(){
+      $("year").textContent = new Date().getFullYear();
+      $("year2").textContent = new Date().getFullYear();
+      $("year3").textContent = new Date().getFullYear();
+
+      // Set language button label properly on load
+      var lang = getLang();
+      $("langBtn").text2 = "";
+      $("langBtn").textContent = (lang==="ar" ? "EN" : "AR");
+
+      applyLang();
+      bindEvents();
+      setActivePage();
+      renderAll();
+    }
+
+    init();
+  </script>
 </body>
-  </html>
+      </html>
