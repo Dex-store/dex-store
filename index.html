@@ -3,8 +3,23 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>DEX treading | متجر إلكتروني</title>
-  <meta name="description" content="DEX treading - متجر خدمات ومنتجات رقمية للتداول"/>
+
+  <title>DEX trading | متجر إلكتروني</title>
+  <meta name="description" content="DEX trading - متجر خدمات ومنتجات رقمية للتداول. اختر المنتج، ادفع، ثم أرسل الطلب عبر واتساب."/>
+
+  <!-- SEO / Social -->
+  <link rel="canonical" href="./"/>
+  <meta name="theme-color" content="#070A12"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="DEX trading | متجر إلكتروني"/>
+  <meta property="og:description" content="متجر خدمات ومنتجات رقمية للتداول. الدفع ثم إرسال الطلب عبر واتساب."/>
+  <meta property="og:locale" content="ar_AR"/>
+  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%231e5bff'/%3E%3Cstop offset='1' stop-color='%234f7cff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='630' fill='%23070A12'/%3E%3Ccircle cx='240' cy='140' r='260' fill='url(%23g)' opacity='.35'/%3E%3Ccircle cx='980' cy='140' r='260' fill='url(%23g)' opacity='.22'/%3E%3Ctext x='80' y='360' fill='white' font-family='Arial' font-size='88' font-weight='800'%3EDEX trading%3C/text%3E%3Ctext x='80' y='450' fill='%23b8c2e6' font-family='Arial' font-size='38'%3EStorefront%3C/text%3E%3C/svg%3E"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <!-- Preconnect (optional if you later add fonts) -->
+  <meta name="color-scheme" content="dark"/>
+
   <style>
     :root{
       --bg:#070A12;
@@ -12,13 +27,14 @@
       --border:rgba(255,255,255,.12);
       --text:#fff; --muted:#b8c2e6;
       --brand:#1e5bff; --brand2:#4f7cff;
-      --ok:#27d17c; --danger:#ff5b5b;
+      --ok:#27d17c; --danger:#ff5b5b; --warn:#ffcf5b;
       --shadow: 0 14px 34px rgba(0,0,0,.45);
       --r:18px; --r2:22px;
+      --focus: 0 0 0 3px rgba(30,91,255,.35);
     }
     *{box-sizing:border-box}
-    html,body{
-      margin:0;padding:0;
+    html,body{margin:0;padding:0}
+    body{
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
       color:var(--text);
       background:
@@ -26,10 +42,17 @@
         radial-gradient(1200px 520px at 82% -12%, rgba(79,124,255,.22), transparent 60%),
         radial-gradient(900px 420px at 50% 110%, rgba(39,209,124,.10), transparent 55%),
         var(--bg);
+      min-height:100vh;
     }
     a{color:inherit;text-decoration:none}
-    button{font-family:inherit}
+    button,input,select,textarea{font-family:inherit}
     .container{max-width:1160px;margin:0 auto;padding:18px}
+
+    /* Accessibility */
+    :focus-visible{outline:none; box-shadow: var(--focus); border-radius:12px;}
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto !important; transition:none !important; animation:none !important}
+    }
 
     /* Topbar */
     .topbar{
@@ -46,6 +69,7 @@
       box-shadow: 0 14px 22px rgba(30,91,255,.28);
       display:grid;place-items:center;
       font-weight:1000;letter-spacing:.5px;
+      user-select:none;
     }
     .brandName{font-weight:1000;font-size:14px}
     .tagline{font-size:12px;color:var(--muted);line-height:1.2;margin-top:2px}
@@ -58,13 +82,16 @@
       background:rgba(255,255,255,.06);
       color:var(--text);
       cursor:pointer;user-select:none;white-space:nowrap;
-      transition:transform .08s ease, opacity .18s ease, background .18s ease;
+      transition:transform .08s ease, opacity .18s ease, background .18s ease, border-color .18s ease;
+      -webkit-tap-highlight-color: transparent;
     }
-    .btn:hover{opacity:.96}
+    .btn:hover{opacity:.96;border-color:rgba(255,255,255,.18)}
     .btn:active{transform:translateY(1px)}
     .btn.primary{border:none;background:linear-gradient(135deg,var(--brand),#2d5bff)}
     .btn.ok{border:none;background:linear-gradient(135deg,#2ad67a,#0aa36b)}
     .btn.danger{border:1px solid rgba(255,91,91,.35);background:rgba(255,91,91,.12);color:#ffd6d6}
+    .btn.ghost{background:transparent}
+    .btn:disabled{opacity:.55;cursor:not-allowed}
 
     .cartBtn{position:relative}
     .bubble{
@@ -100,7 +127,6 @@
       font-size:13px;
     }
     .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;word-break:break-all}
-
     .sectionHead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:18px 0 10px;flex-wrap:wrap}
     .sectionHead h2{margin:0;font-size:18px}
 
@@ -113,9 +139,16 @@
       background:rgba(255,255,255,.05);
       color:var(--muted);
       cursor:pointer;user-select:none;font-size:12px;font-weight:800;
+      transition: background .18s ease, border-color .18s ease, transform .08s ease;
     }
+    .chip:active{transform:translateY(1px)}
     .chip.active{color:#fff;border-color:rgba(30,91,255,.5);background:rgba(30,91,255,.18)}
-    .search{width:min(460px,100%);padding:10px 12px;border-radius:14px;border:1px solid var(--border);background:rgba(0,0,0,.18);color:var(--text);outline:none}
+    .searchWrap{display:flex;gap:8px;align-items:center;width:min(520px,100%)}
+    .search{
+      flex:1;
+      padding:10px 12px;border-radius:14px;border:1px solid var(--border);
+      background:rgba(0,0,0,.18);color:var(--text);outline:none
+    }
 
     .gridProducts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
     @media (max-width:1100px){.gridProducts{grid-template-columns:repeat(3,1fr)}}
@@ -126,7 +159,9 @@
       border-radius:var(--r2);
       background:rgba(255,255,255,.04);
       overflow:hidden;display:flex;flex-direction:column;min-height: 280px;
+      transition: transform .14s ease, border-color .18s ease;
     }
+    .product:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.18)}
     .pMedia{
       height:132px;
       background:
@@ -200,48 +235,88 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 16px 36px rgba(0,0,0,.50);
       cursor:pointer;user-select:none;
+      transition: transform .14s ease, opacity .18s ease;
     }
+    .waFloat:hover{transform:translateY(-2px)}
     [dir="ltr"] .waFloat{right:auto;left:16px}
     .waDot{width:12px;height:12px;border-radius:999px;background:var(--ok);box-shadow:0 0 0 6px rgba(39,209,124,.14)}
     .waCol{display:flex;flex-direction:column;line-height:1.05}
     .waText{font-weight:1000}
     .waSub{font-size:12px;color:rgba(255,255,255,.75);margin-top:2px}
+
+    /* Toast */
+    .toasts{
+      position:fixed;z-index:120;
+      top:14px;left:14px;
+      display:flex;flex-direction:column;gap:10px;
+      max-width:min(420px, calc(100vw - 28px));
+    }
+    [dir="rtl"] .toasts{left:auto;right:14px}
+    .toast{
+      border:1px solid var(--border);
+      background:rgba(5,6,11,.92);
+      backdrop-filter: blur(10px);
+      border-radius:16px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.55);
+      padding:12px 12px;
+      display:flex;align-items:flex-start;justify-content:space-between;gap:10px;
+      animation: toastIn .18s ease;
+    }
+    @keyframes toastIn{from{transform:translateY(-6px);opacity:0}to{transform:none;opacity:1}}
+    .toast b{display:block;margin-bottom:2px}
+    .toast .x{border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:16px;line-height:1}
+    .toast.ok{border-color:rgba(39,209,124,.35)}
+    .toast.warn{border-color:rgba(255,207,91,.35)}
+    .toast.danger{border-color:rgba(255,91,91,.35)}
+
+    /* Skip link */
+    .skip{
+      position:absolute;top:-50px;left:10px;
+      background:rgba(5,6,11,.92);border:1px solid var(--border);
+      padding:10px 12px;border-radius:12px;z-index:999;
+      transition: top .18s ease;
+    }
+    .skip:focus{top:10px}
   </style>
 </head>
 
 <body>
+<a href="#products" class="skip">تخطي إلى المنتجات</a>
 
-<header class="topbar">
+<header class="topbar" role="banner">
   <div class="container">
-    <div class="brand">
-      <div class="logo">DX</div>
+    <div class="brand" aria-label="DEX trading">
+      <div class="logo" aria-hidden="true">DX</div>
       <div>
-        <div class="brandName">DEX treading</div>
+        <div class="brandName">DEX trading</div>
         <div class="tagline" id="tagline"></div>
       </div>
     </div>
 
-    <nav class="nav">
+    <nav class="nav" aria-label="Main navigation">
       <a class="btn" href="#home" id="navHome"></a>
       <a class="btn" href="#services" id="navServices"></a>
       <a class="btn" href="#checkout" id="navCheckout"></a>
 
-      <button class="btn cartBtn" id="openCartBtn" type="button">
+      <button class="btn cartBtn" id="openCartBtn" type="button" aria-haspopup="dialog" aria-controls="drawer">
         <span id="cartBtnText"></span>
         <span class="bubble" id="cartCountBubble" style="display:none">0</span>
       </button>
 
-      <button class="btn primary" id="langBtn" type="button">EN</button>
+      <button class="btn primary" id="langBtn" type="button" aria-label="Change language">EN</button>
     </nav>
   </div>
 </header>
 
+<!-- TOASTS -->
+<div class="toasts" id="toasts" aria-live="polite" aria-atomic="true"></div>
+
 <!-- CART DRAWER -->
-<div class="overlay" id="overlay"></div>
-<aside class="drawer" id="drawer">
+<div class="overlay" id="overlay" tabindex="-1" aria-hidden="true"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Cart">
   <div class="drawerHead">
     <div style="font-weight:1000" id="cartTitle"></div>
-    <button class="btn" id="closeCartBtn" type="button">✕</button>
+    <button class="btn" id="closeCartBtn" type="button" aria-label="Close">✕</button>
   </div>
   <div class="drawerBody" id="cartItems"></div>
   <div class="drawerFoot">
@@ -259,15 +334,15 @@
 </aside>
 
 <!-- WhatsApp floating button -->
-<div class="waFloat" id="waFloatBtn">
-  <span class="waDot"></span>
+<div class="waFloat" id="waFloatBtn" role="button" tabindex="0" aria-label="Order via WhatsApp">
+  <span class="waDot" aria-hidden="true"></span>
   <div class="waCol">
     <div class="waText" id="waFloatText"></div>
     <div class="waSub" id="waFloatSub"></div>
   </div>
 </div>
 
-<main>
+<main id="main">
   <!-- HOME -->
   <section id="home">
     <div class="container" style="padding-top:18px">
@@ -307,7 +382,11 @@
 
       <div class="toolbar">
         <div class="chips" id="chips"></div>
-        <input class="search" id="search" />
+
+        <div class="searchWrap">
+          <input class="search" id="search" autocomplete="off" inputmode="search"/>
+          <button class="btn ghost" id="clearSearchBtn" type="button" aria-label="Clear search">✕</button>
+        </div>
       </div>
 
       <div class="gridProducts" id="productsGrid"></div>
@@ -378,7 +457,7 @@
         </div>
       </div>
 
-      <div class="footer">© <span id="year2"></span> DEX treading</div>
+      <div class="footer">© <span id="year2"></span> DEX trading</div>
     </div>
   </section>
 
@@ -394,28 +473,28 @@
         <div class="card">
           <h3 style="margin:0 0 10px" id="customerTitle"></h3>
 
-          <form id="orderForm">
+          <form id="orderForm" novalidate>
             <div class="formGrid">
               <div class="field">
-                <label id="fullNameLabel"></label>
-                <input id="fullName" required />
+                <label id="fullNameLabel" for="fullName"></label>
+                <input id="fullName" required autocomplete="name"/>
               </div>
               <div class="field">
-                <label id="phoneLabel"></label>
-                <input id="phone" required />
+                <label id="phoneLabel" for="phone"></label>
+                <input id="phone" required inputmode="tel" autocomplete="tel" placeholder="+249..."/>
               </div>
               <div class="field">
-                <label id="emailLabel"></label>
-                <input id="email" type="email" required />
+                <label id="emailLabel" for="email"></label>
+                <input id="email" type="email" required autocomplete="email"/>
               </div>
               <div class="field">
-                <label id="countryLabel"></label>
-                <input id="country" required />
+                <label id="countryLabel" for="country"></label>
+                <input id="country" required autocomplete="country-name"/>
               </div>
             </div>
 
             <div class="field" style="margin-top:10px">
-              <label id="payMethodLabel"></label>
+              <label id="payMethodLabel" for="payMethod"></label>
               <select id="payMethod" required>
                 <option value="Bank of Khartoum (8108407)">Bank of Khartoum (8108407)</option>
                 <option value="Foory Sudan (52000220)">Foory Sudan (52000220)</option>
@@ -425,14 +504,14 @@
             </div>
 
             <div class="field">
-              <label id="txLabel"></label>
-              <input id="txid" required />
+              <label id="txLabel" for="txid"></label>
+              <input id="txid" required autocomplete="off"/>
               <div class="muted small" id="txHint"></div>
             </div>
 
             <div class="field">
-              <label id="noteLabel"></label>
-              <textarea id="note"></textarea>
+              <label id="noteLabel" for="note"></label>
+              <textarea id="note" autocomplete="off"></textarea>
             </div>
 
             <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
@@ -481,13 +560,13 @@
         </div>
       </div>
 
-      <div class="footer">© <span id="year3"></span> DEX treading</div>
+      <div class="footer">© <span id="year3"></span> DEX trading</div>
     </div>
   </section>
 </main>
 
 <script>
-  // ===== Final config =====
+  // ===== Config =====
   const ETH_ADDRESS = "0xb56a89f790060cbb0f08d02234921e5fefff11a6";
   const WHATSAPP_NUMBER = "249112550653";
   const CURRENCY = "USD";
@@ -511,7 +590,7 @@
       tagline:"معًا لنشر المعرفة المالية في دول أفريقيا و شمال أفريقيا",
       navHome:"الرئيسية", navServices:"الخدمات والأسعار", navCheckout:"الدفع والشراء",
       cart:"السلة",
-      heroTitle:"متجر DEX treading",
+      heroTitle:"متجر DEX trading",
       heroDesc:"اختر المنتج وأضفه للسلة، ثم أكمل الدفع أو اطلب عبر واتساب.",
       heroShop:"تصفح المنتجات", heroCheckout:"إتمام الشراء", heroServices:"طرق الدفع",
       ethBoxTitle:"عنوان الدفع على شبكة Ethereum (ERC20)", ethHint:"أرسل USDT (ERC20) أو ETH إلى هذا العنوان فقط.", copyEth:"نسخ عنوان ETH",
@@ -542,13 +621,21 @@
       total:"المجموع", previewTitle:"نص الطلب الجاهز",
       chips:{all:"الكل", Courses:"الكورسات", USDT:"USDT", Exness:"Exness", Bots:"البوتات"},
       searchPh:"ابحث عن منتج…",
-      footer:"واجهة متجر جاهزة للبيع (تأكيد الطلب عبر واتساب بعد الدفع)."
+      footer:"واجهة متجر جاهزة للبيع (تأكيد الطلب عبر واتساب بعد الدفع).",
+      toastAddedTitle:"تمت الإضافة",
+      toastAddedBody:"أُضيف المنتج إلى السلة.",
+      toastCopiedTitle:"تم النسخ",
+      toastCopiedBody:"تم نسخ النص بنجاح.",
+      toastNeedCartTitle:"السلة فارغة",
+      toastNeedCartBody:"أضف منتجات أولًا.",
+      toastFormTitle:"بيانات ناقصة",
+      toastFormBody:"أكمل الحقول المطلوبة."
     },
     en:{
       tagline:"Together to spread financial knowledge in Africa & North Africa",
       navHome:"Home", navServices:"Services & Pricing", navCheckout:"Checkout",
       cart:"Cart",
-      heroTitle:"DEX treading Store",
+      heroTitle:"DEX trading Store",
       heroDesc:"Pick an item, add to cart, then checkout — or order via WhatsApp.",
       heroShop:"Browse products", heroCheckout:"Checkout", heroServices:"Payments",
       ethBoxTitle:"Payment address on Ethereum (ERC20)", ethHint:"Send USDT (ERC20) or ETH to this address only.", copyEth:"Copy ETH address",
@@ -579,20 +666,31 @@
       total:"Total", previewTitle:"Ready order text",
       chips:{all:"All", Courses:"Courses", USDT:"USDT", Exness:"Exness", Bots:"Bots"},
       searchPh:"Search products…",
-      footer:"Sales-ready storefront (order confirmed on WhatsApp after payment)."
+      footer:"Sales-ready storefront (order confirmed on WhatsApp after payment).",
+      toastAddedTitle:"Added",
+      toastAddedBody:"Item added to cart.",
+      toastCopiedTitle:"Copied",
+      toastCopiedBody:"Copied successfully.",
+      toastNeedCartTitle:"Cart is empty",
+      toastNeedCartBody:"Add items first.",
+      toastFormTitle:"Missing info",
+      toastFormBody:"Fill required fields."
     }
   };
 
-  const CART_KEY="dex_cart_v6";
-  const LANG_KEY="dex_lang_v6";
-  const FILTER_KEY="dex_filter_v6";
+  const CART_KEY="dex_cart_v7";
+  const LANG_KEY="dex_lang_v7";
+  const FILTER_KEY="dex_filter_v7";
+  const SEARCH_KEY="dex_search_v7";
+  const LAST_ORDER_KEY="dex_last_order_v7";
 
   const $ = (id)=>document.getElementById(id);
   const getLang=()=>localStorage.getItem(LANG_KEY)||"ar";
   const setLang=(l)=>{localStorage.setItem(LANG_KEY,l); applyLang(); renderAll();};
-  const t=(k)=>I18N[getLang()][k];
   const getFilter=()=>localStorage.getItem(FILTER_KEY)||"all";
   const setFilter=(f)=>{localStorage.setItem(FILTER_KEY,f); renderAll();};
+  const getSearch=()=>localStorage.getItem(SEARCH_KEY)||"";
+  const setSearch=(v)=>localStorage.setItem(SEARCH_KEY, v);
 
   const getCart=()=>{try{return JSON.parse(localStorage.getItem(CART_KEY))||[]}catch(e){return[]}};
   const saveCart=(c)=>localStorage.setItem(CART_KEY,JSON.stringify(c));
@@ -602,12 +700,39 @@
   const cartCount=()=>getCart().reduce((s,x)=>s+x.qty,0);
   const cartTotal=()=>cartDetailed().reduce((s,x)=>s+x.p.price*x.qty,0);
 
+  function escapeHtml(s){
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+  }
+  const norm=(s)=>String(s||"").toLowerCase().trim();
+
+  // Toasts (replace alert)
+  function toast(type, title, body, ms=2400){
+    const host=$("toasts");
+    const el=document.createElement("div");
+    el.className="toast "+type;
+    el.innerHTML = `
+      <div>
+        <b>${escapeHtml(title)}</b>
+        <div class="muted small">${escapeHtml(body)}</div>
+      </div>
+      <button class="x" type="button" aria-label="Close">✕</button>
+    `;
+    const close=()=>{ el.remove(); };
+    el.querySelector(".x").onclick=close;
+    host.appendChild(el);
+    window.setTimeout(close, ms);
+  }
+
   function addToCart(id){
     const cart=getCart();
     const item=cart.find(x=>x.id===id);
     if(item) item.qty+=1; else cart.push({id,qty:1});
-    saveCart(cart); renderAll(); openCart();
+    saveCart(cart);
+    renderAll();
+    toast("ok", I18N[getLang()].toastAddedTitle, I18N[getLang()].toastAddedBody);
+    openCart();
   }
+
   function setQty(id,qty){
     const cart=getCart().map(x=>{
       if(x.id!==id) return x;
@@ -622,51 +747,88 @@
   function clearCart(){ saveCart([]); renderAll(); }
 
   // Drawer
-  let overlay, drawer;
-  function openCart(){ overlay.classList.add("show"); drawer.classList.add("show"); }
-  function closeCart(){ overlay.classList.remove("show"); drawer.classList.remove("show"); }
+  let overlay, drawer, lastFocus=null;
 
-  function escapeHtml(s){
-    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+  function lockScroll(lock){
+    document.body.style.overflow = lock ? "hidden" : "";
   }
-  const norm=(s)=>String(s||"").toLowerCase();
+
+  function openCart(){
+    lastFocus=document.activeElement;
+    overlay.classList.add("show");
+    drawer.classList.add("show");
+    overlay.setAttribute("aria-hidden","false");
+    lockScroll(true);
+    // focus close button
+    $("closeCartBtn").focus();
+  }
+
+  function closeCart(){
+    overlay.classList.remove("show");
+    drawer.classList.remove("show");
+    overlay.setAttribute("aria-hidden","true");
+    lockScroll(false);
+    if(lastFocus && typeof lastFocus.focus==="function") lastFocus.focus();
+  }
 
   function buildOrderText(form){
     const items=cartDetailed();
-    const lines=[];
-    lines.push("DEX treading - Order");
-    lines.push("--------------------------------");
-    if(form){
-      lines.push("Name: "+form.fullName);
-      lines.push("Phone: "+form.phone);
-      lines.push("Email: "+form.email);
-      lines.push("Country/City: "+form.country);
-      lines.push("Payment method: "+form.payMethod);
-      lines.push("TxID/Ref: "+form.txid);
-      if(form.note) lines.push("Note: "+form.note);
-    }
-    lines.push("--------------------------------");
-    lines.push("Items:");
     const lang=getLang();
+    const lines=[];
+    if(lang==="ar"){
+      lines.push("DEX trading - طلب شراء");
+      lines.push("--------------------------------");
+      if(form){
+        lines.push("الاسم: "+form.fullName);
+        lines.push("الهاتف: "+form.phone);
+        lines.push("البريد: "+form.email);
+        lines.push("الدولة/المدينة: "+form.country);
+        lines.push("طريقة الدفع: "+form.payMethod);
+        lines.push("رقم العملية/TxID: "+form.txid);
+        if(form.note) lines.push("ملاحظة: "+form.note);
+      }
+      lines.push("--------------------------------");
+      lines.push("المحتويات:");
+    } else {
+      lines.push("DEX trading - Order");
+      lines.push("--------------------------------");
+      if(form){
+        lines.push("Name: "+form.fullName);
+        lines.push("Phone: "+form.phone);
+        lines.push("Email: "+form.email);
+        lines.push("Country/City: "+form.country);
+        lines.push("Payment method: "+form.payMethod);
+        lines.push("TxID/Ref: "+form.txid);
+        if(form.note) lines.push("Note: "+form.note);
+      }
+      lines.push("--------------------------------");
+      lines.push("Items:");
+    }
+
     items.forEach(it=>{
       const name=(lang==="ar")?it.p.name_ar:it.p.name_en;
       lines.push("- "+name+" | Qty: "+it.qty+" | "+(it.p.price*it.qty).toFixed(2)+" "+CURRENCY);
     });
+
     lines.push("--------------------------------");
-    lines.push("TOTAL: "+cartTotal().toFixed(2)+" "+CURRENCY);
+    lines.push((lang==="ar"?"الإجمالي: ":"TOTAL: ")+cartTotal().toFixed(2)+" "+CURRENCY);
     lines.push("ETH (ERC20): "+ETH_ADDRESS);
     return lines.join("\n");
   }
+
   const waLink=(text)=>"https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(text);
 
   async function copyText(txt){
     try{
-      if(navigator.clipboard?.writeText){ await navigator.clipboard.writeText(txt); return; }
+      if(navigator.clipboard?.writeText){ await navigator.clipboard.writeText(txt); return true; }
     }catch(e){}
-    const ta=document.createElement("textarea");
-    ta.value=txt; document.body.appendChild(ta);
-    ta.select(); try{document.execCommand("copy");}catch(e){}
-    document.body.removeChild(ta);
+    try{
+      const ta=document.createElement("textarea");
+      ta.value=txt; document.body.appendChild(ta);
+      ta.select(); document.execCommand("copy");
+      document.body.removeChild(ta);
+      return true;
+    }catch(e){ return false; }
   }
 
   function applyLang(){
@@ -756,6 +918,11 @@
     $("footerNote").textContent = I18N[lang].footer;
 
     $("langBtn").textContent = (lang==="ar") ? "EN" : "AR";
+
+    // also localize skip link text
+    document.querySelector(".skip").textContent = (lang==="ar") ? "تخطي إلى المنتجات" : "Skip to products";
+    // update page title/description a bit (simple)
+    document.title = (lang==="ar") ? "DEX trading | متجر إلكتروني" : "DEX trading | Storefront";
   }
 
   function renderChips(){
@@ -768,9 +935,11 @@
       {id:"Exness", label:I18N[lang].chips.Exness},
       {id:"Bots", label:I18N[lang].chips.Bots},
     ];
-    $("chips").innerHTML = chips.map(c=>`<div class="chip ${f===c.id?'active':''}" data-chip="${c.id}">${escapeHtml(c.label)}</div>`).join("");
+    $("chips").innerHTML = chips.map(c=>`<div class="chip ${f===c.id?'active':''}" data-chip="${c.id}" role="button" tabindex="0">${escapeHtml(c.label)}</div>`).join("");
     $("chips").querySelectorAll("[data-chip]").forEach(el=>{
-      el.onclick=()=>setFilter(el.getAttribute("data-chip"));
+      const click=()=>setFilter(el.getAttribute("data-chip"));
+      el.onclick=click;
+      el.onkeydown=(e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); click(); } };
     });
   }
 
@@ -784,7 +953,7 @@
       if(!q) return true;
       const title=(lang==="ar")?p.name_ar:p.name_en;
       const desc=(lang==="ar")?p.desc_ar:p.desc_en;
-      return norm(title).includes(q) || norm(desc).includes(q) || norm(p.category).includes(q);
+      return norm(title).includes(q) || norm(desc).includes(q) || norm(p.category).includes(q) || norm(p.tag).includes(q);
     });
 
     if(list.length===0){
@@ -796,13 +965,13 @@
       const title=(lang==="ar")?p.name_ar:p.name_en;
       const desc=(lang==="ar")?p.desc_ar:p.desc_en;
       return `
-        <div class="product">
+        <article class="product" aria-label="${escapeHtml(title)}">
           <div class="pMedia">
             <div class="pBadges">
               <span class="badge">${escapeHtml(p.tag)}</span>
               <span class="badge">${p.price.toFixed(2)} ${CURRENCY}</span>
             </div>
-            <div style="font-weight:1000;color:rgba(255,255,255,.85);font-size:28px">DX</div>
+            <div style="font-weight:1000;color:rgba(255,255,255,.85);font-size:28px" aria-hidden="true">DX</div>
           </div>
           <div class="pBody">
             <div class="pTitle">${escapeHtml(title)}</div>
@@ -812,7 +981,7 @@
               <button class="btn primary" data-add="${p.id}" type="button">${I18N[lang].add}</button>
             </div>
           </div>
-        </div>
+        </article>
       `;
     }).join("");
 
@@ -847,12 +1016,12 @@
             <div class="ciMeta">${it.p.price.toFixed(2)} ${CURRENCY}</div>
           </div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end">
-            <div class="qty">
-              <button type="button" data-dec="${it.p.id}">−</button>
-              <span>${it.qty}</span>
-              <button type="button" data-inc="${it.p.id}">+</button>
+            <div class="qty" aria-label="Quantity">
+              <button type="button" data-dec="${it.p.id}" aria-label="Decrease">−</button>
+              <span aria-live="polite">${it.qty}</span>
+              <button type="button" data-inc="${it.p.id}" aria-label="Increase">+</button>
             </div>
-            <button class="btn danger" type="button" data-rm="${it.p.id}">✕</button>
+            <button class="btn danger" type="button" data-rm="${it.p.id}" aria-label="Remove">✕</button>
           </div>
         </div>
       `;
@@ -910,20 +1079,43 @@
     renderCheckout();
   }
 
+  function sanitizePhone(v){
+    // allow + and digits only
+    return String(v||"").replace(/[^\d+]/g,"").slice(0, 20);
+  }
+
   function bind(){
     overlay=$("overlay"); drawer=$("drawer");
+
     $("openCartBtn").onclick=openCart;
     $("closeCartBtn").onclick=closeCart;
     overlay.onclick=closeCart;
 
-    $("clearCartBtn").onclick=clearCart;
+    $("clearCartBtn").onclick=()=>{
+      clearCart();
+      closeCart();
+    };
     $("goCheckoutFromCart").onclick=()=>closeCart();
 
     $("langBtn").onclick=()=>setLang(getLang()==="ar"?"en":"ar");
-    $("search").addEventListener("input", ()=>renderProducts());
 
+    // restore search
+    $("search").value = getSearch();
+    $("search").addEventListener("input", ()=>{
+      setSearch($("search").value);
+      renderProducts();
+    });
+    $("clearSearchBtn").onclick=()=>{
+      $("search").value="";
+      setSearch("");
+      renderProducts();
+      $("search").focus();
+    };
+
+    // copy ETH
     const copyEth=async()=>{
-      await copyText(ETH_ADDRESS);
+      const ok = await copyText(ETH_ADDRESS);
+      if(ok) toast("ok", I18N[getLang()].toastCopiedTitle, I18N[getLang()].toastCopiedBody);
       const btns=[$("copyEthTopBtn"), $("copyEthBtn")];
       btns.forEach(btn=>{
         const old=btn.textContent;
@@ -934,14 +1126,44 @@
     $("copyEthTopBtn").onclick=copyEth;
     $("copyEthBtn").onclick=copyEth;
 
-    $("waFloatBtn").onclick=()=>{
-      if(cartDetailed().length===0){ alert(I18N[getLang()].emptyCart); return; }
-      window.open(waLink(buildOrderText(null)),"_blank");
+    // WhatsApp floating (click + keyboard)
+    const waAction=()=>{
+      if(cartDetailed().length===0){
+        toast("warn", I18N[getLang()].toastNeedCartTitle, I18N[getLang()].toastNeedCartBody);
+        return;
+      }
+      window.open(waLink(buildOrderText(null)),"_blank","noopener,noreferrer");
     };
+    $("waFloatBtn").onclick=waAction;
+    $("waFloatBtn").onkeydown=(e)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); waAction(); } };
+
+    // Close drawer with ESC
+    document.addEventListener("keydown",(e)=>{
+      if(e.key==="Escape"){
+        if(drawer.classList.contains("show")) closeCart();
+      }
+    });
+
+    // Basic focus trap when drawer open
+    drawer.addEventListener("keydown",(e)=>{
+      if(e.key!=="Tab") return;
+      const focusable = drawer.querySelectorAll("button, a, input, select, textarea, [tabindex]:not([tabindex='-1'])");
+      const list=[...focusable].filter(x=>!x.disabled);
+      if(!list.length) return;
+      const first=list[0], last=list[list.length-1];
+      if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+    });
+
+    // form improvements
+    $("phone").addEventListener("input", ()=>{ $("phone").value = sanitizePhone($("phone").value); });
 
     $("orderForm").addEventListener("submit",(e)=>{
       e.preventDefault();
-      if(cartDetailed().length===0){ alert(I18N[getLang()].emptyCart); return; }
+      if(cartDetailed().length===0){
+        toast("warn", I18N[getLang()].toastNeedCartTitle, I18N[getLang()].toastNeedCartBody);
+        return;
+      }
 
       const form={
         fullName:$("fullName").value.trim(),
@@ -952,27 +1174,39 @@
         txid:$("txid").value.trim(),
         note:$("note").value.trim()
       };
-      if(!form.fullName||!form.phone||!form.email||!form.country||!form.txid){
-        alert(getLang()==="ar"?"أكمل الحقول المطلوبة.":"Fill required fields.");
+
+      // simple validation (keep it lightweight)
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
+      if(!form.fullName||!form.phone||!emailOk||!form.country||!form.txid){
+        toast("danger", I18N[getLang()].toastFormTitle, I18N[getLang()].toastFormBody);
         return;
       }
+
       const txt=buildOrderText(form);
       $("orderPreviewText").textContent=txt;
       $("orderPreviewBox").style.display="block";
-      localStorage.setItem("dex_last_order_v6", txt);
+      localStorage.setItem(LAST_ORDER_KEY, txt);
+      toast("ok", (getLang()==="ar"?"تم توليد الطلب":"Order generated"), (getLang()==="ar"?"يمكنك نسخه أو إرساله عبر واتساب":"Copy it or send via WhatsApp"));
     });
 
     $("copyOrderBtn").onclick=async()=>{
-      const txt=$("orderPreviewText").textContent || localStorage.getItem("dex_last_order_v6") || "";
-      if(!txt){ alert(getLang()==="ar"?"قم بتوليد الطلب أولًا.":"Generate order first."); return; }
-      await copyText(txt);
+      const txt=$("orderPreviewText").textContent || localStorage.getItem(LAST_ORDER_KEY) || "";
+      if(!txt){
+        toast("warn", (getLang()==="ar"?"لا يوجد طلب":"No order"), (getLang()==="ar"?"قم بتوليد الطلب أولًا.":"Generate order first."));
+        return;
+      }
+      const ok = await copyText(txt);
+      if(ok) toast("ok", I18N[getLang()].toastCopiedTitle, I18N[getLang()].toastCopiedBody);
       const b=$("copyOrderBtn"); const old=b.textContent; b.textContent="✓"; setTimeout(()=>b.textContent=old,900);
     };
 
     $("waOrderBtn").onclick=()=>{
-      if(cartDetailed().length===0){ alert(I18N[getLang()].emptyCart); return; }
+      if(cartDetailed().length===0){
+        toast("warn", I18N[getLang()].toastNeedCartTitle, I18N[getLang()].toastNeedCartBody);
+        return;
+      }
       const txt=$("orderPreviewText").textContent || buildOrderText(null);
-      window.open(waLink(txt),"_blank");
+      window.open(waLink(txt),"_blank","noopener,noreferrer");
     };
 
     $("year2").textContent=new Date().getFullYear();
